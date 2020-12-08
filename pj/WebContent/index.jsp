@@ -6,7 +6,6 @@
 <%
 	Member loginMember = (Member) session.getAttribute("loginMember");
 	ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("todayImageList");
-	
 %>
 <!DOCTYPE html>
 <html>
@@ -35,17 +34,16 @@
 	<!-- 2020-12-02 haesu -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
 		id="header">
-
 		<button class="navbar-toggler navbar-toggler__nohide" type="button"
 			data-toggle="collapse" data-target="#navbarNavDropdown"
 			aria-controls="navbarNavDropdown" aria-expanded="true"
 			aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon navbar-toggler__nohide"></span>
 		</button>
-
-		<ul>
-			<li><a></a></li>
-		</ul>
+		<div class="navbar__icon">
+			<a href="index.do"><img class="navbar__icon-image" alt="-"
+				src="img/EzIcon.jpg"></a>
+		</div>
 		<div class="collapse navbar-collapse mr-4" id="navbarNavDropdown">
 			<ul class="navbar-nav">
 				<li class="nav-item dropdown"><a
@@ -56,12 +54,12 @@
 
 						<a class="dropdown-item" href="goodsList.do?kind=cpu">CPU</a> <a
 							class="dropdown-item" href="goodsList.do?kind=cooler">쿨러/튜닝</a> <a
-							class="dropdown-item" href="goodsList.do?kind=mainboard">메인보드</a> <a
-							class="dropdown-item" href="goodsList.do?kind=memory">메모리</a> <a
-							class="dropdown-item" href="goodsList.do?kind=graphic">그래픽카드</a> <a
-							class="dropdown-item" href="goodsList.do?kind=SSD">SSd</a> <a
-							class="dropdown-item" href="goodsList.do?kind=harddisk">하드디스크</a> <a
-							class="dropdown-item" href="goodsList.do?kind=sidedisk">외장HDD/SSD</a>
+							class="dropdown-item" href="goodsList.do?kind=mainboard">메인보드</a>
+						<a class="dropdown-item" href="goodsList.do?kind=memory">메모리</a> <a
+							class="dropdown-item" href="goodsList.do?kind=graphic">그래픽카드</a>
+						<a class="dropdown-item" href="goodsList.do?kind=SSD">SSd</a> <a
+							class="dropdown-item" href="goodsList.do?kind=harddisk">하드디스크</a>
+						<a class="dropdown-item" href="goodsList.do?kind=sidedisk">외장HDD/SSD</a>
 						<a class="dropdown-item" href="goodsList.do?kind=case">케이스</a> <a
 							class="dropdown-item" href="goodsList.do?kind=power">파워</a> <a
 							class="dropdown-item" href="goodsList.do?kind=keyboard">키보드</a> <a
@@ -116,15 +114,15 @@
 				class="carousel slide w-100 container__center " data-ride="carousel">
 				<div class="carousel-inner w-100 ">
 					<div class="carousel-item active w-100">
-						<img src="img/picture1.jpg" class="d-block w-100" alt="..."
+						<img src="img/come.png" class="d-block w-100" alt="..."
 							style="height: 400px">
 					</div>
 					<div class="carousel-item w-100">
-						<img src="img/picture2.jpg" class="d-block w-100" alt="..."
+						<img src="img/norefund.png" class="d-block w-100" alt="..."
 							style="height: 400px">
 					</div>
 					<div class="carousel-item w-100">
-						<img src="img/picture3.jpg" class="d-block w-100" alt="..."
+						<img src="img/attack.jpg" class="d-block w-100" alt="..."
 							style="height: 400px">
 					</div>
 				</div>
@@ -148,40 +146,52 @@
 		</div>
 		<div id="com">
 			<ul class="board-list">
-				<li><img src="img/Snote.jpg" class="com__size">
-					<div class="com_show">
-						<h4>[삼성전자]노트북7 Force 15형</h4>
-						<p>가격 : 1,000,000원</p>
-					</div></li>
-				<li><img src="img/LDcom.jpg" class="com__size">
-					<div class="com_show">
-						<h4>[LG전자] 슬림형 데스크탑 Z80GV</h4>
-						<p>가격 : 800,000원</p>
-					</div></li>
-				<li><img src="img/LeDcom.png" class="com__size">
-					<div class="com_show">
-						<h4>[레노버] 씽크센터 M70t</h4>
-						<p>가격 : 900,000원</p>
-					</div></li>
+				<a data-toggle="modal" data-target="#Snote">
+					<li><img src="img/Snote.jpg" class="com__size">
+						<div class="com_show">
+							<h4>[삼성전자]노트북7 Force 15형</h4>
+							<p>가격 : 1,000,000원</p>
+						</div></li>
+				</a>
+				<a data-toggle="modal" data-target="#LGDesk">
+					<li><img src="img/LDcom.jpg" class="com__size">
+						<div class="com_show">
+							<h4>[LG전자] 슬림형 데스크탑 Z80GV</h4>
+							<p>가격 : 800,000원</p>
+						</div></li>
+				</a>
+				<a data-toggle="modal" data-target="#LEM70t">
+					<li><img src="img/LeDcom.png" class="com__size">
+						<div class="com_show">
+							<h4>[레노버] 씽크센터 M70t</h4>
+							<p>가격 : 900,000원</p>
+						</div></li>
+				</a>
 			</ul>
 		</div>
 		<div id="com">
 			<ul class="board-list">
-				<li><img src="img/PMo.jpg" class="com__size">
-					<div class="com_show">
-						<h4>[비트엠] 플래티넘 HP190ML 프리싱크 HDR</h4>
-						<p>가격 : 200,000원</p>
-					</div></li>
-				<li><img src="img/AD4.jpg" class="com__size">
-					<div class="com_show">
-						<h4>[ADATA] 4GB 컴퓨터 DDR4 PC4-21300</h4>
-						<p>가격 : 20,000원</p>
-					</div></li>
-				<li><img src="img/SC.jpg" class="com__size">
-					<div class="com_show">
-						<h4>[Creative] 사운드 블라스터X G6 사운드카드</h4>
-						<p>가격 : 190,000원</p>
-					</div></li>
+				<a data-toggle="modal" data-target="#BHP190ML">
+					<li><img src="img/PMo.jpg" class="com__size">
+						<div class="com_show">
+							<h4>[비트엠] 플래티넘 HP190ML 프리싱크 HDR</h4>
+							<p>가격 : 200,000원</p>
+						</div></li>
+				</a>
+				<a data-toggle="modal" data-target="#ADPC4-21300">
+					<li><img src="img/AD4.jpg" class="com__size">
+						<div class="com_show">
+							<h4>[ADATA] 4GB 컴퓨터 DDR4 PC4-21300</h4>
+							<p>가격 : 20,000원</p>
+						</div></li>
+				</a>
+				<a data-toggle="modal" data-target="#CG6">
+					<li><img src="img/SC.jpg" class="com__size">
+						<div class="com_show">
+							<h4>[Creative] 사운드 블라스터X G6 사운드카드</h4>
+							<p>가격 : 190,000원</p>
+						</div></li>
+				</a>
 			</ul>
 		</div>
 	</section>
@@ -193,51 +203,59 @@
 			<ul class="nav nav-tabs card-header-tabs">
 				<li class="nav-item"><a class="nav-link active" href="#">공지사항</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="#">이벤트</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">쿠폰</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">이벤트/쿠폰</a></li>
 			</ul>
 		</div>
 		<div class="card-body tab-info">
 			<h1>공지사항 창입니다.</h1>
 		</div>
-		<div class="card-body tab-info mx-auto d-none">
-			<div class="d-flex justify-content-between align-items-center">
-				<a href="#" class="text-decoration-none">
-					<div class="card bg-white text-white card__size">
-						<img src="img/picture4.jpg" class="card-img card-img__cover"
-							alt="...">
-						<h4>G-force를 싸게 살수 있는 기회!</h4>
-					</div>
-				</a> <a href="#" class="text-decoration-none">
-					<div class="card bg-white text-white card__size">
-						<img src="img/picture4.jpg" class="card-img card-img__cover"
-							alt="...">
-						<h4>나도 할수 있다! 조립!</h4>
-					</div>
-				</a> <a href="#" class="text-decoration-none">
-					<div class="card bg-white text-white card__size">
-						<img src="img/picture4.jpg" class="card-img card-img__cover"
-							alt="...">
-						<h4>부품 무료 나눔 이벤트</h4>
-					</div>
-				</a>
-			</div>
-		</div>
 		<div class="card-body d-none tab-info mx-auto">
-			<div class="d-flex">
-				<a href="#" class="text-decoration-none">
-					<div class="card bg-white text-white card__size">
-						<img src="img/picture4.jpg" class="card-img card-img__cover"
-							alt="...">
+			<div class="card-deck card__deck-margin">
+				<div class="card bg-white text-white card__size">
+					<a href="#" class="text-decoration-none"> <img
+						src="img/coupon/RTX3060coupon.jpg"
+						class="card-img-top card-img__cover" alt="...">
 						<h4>회원 전용 쿠폰</h4>
-					</div>
-				</a> <a href="#" class="text-decoration-none">
-					<div class="card bg-white text-white card__size">
-						<img src="img/picture4.jpg" class="card-img card-img__cover"
-							alt="...">
+					</a>
+				</div>
+				<div class="card bg-white text-white card__size">
+					<a href="#" class="text-decoration-none"> <img
+						src="img/coupon/AAL300M.jpg"
+						class="card-img-top card-img__cover" alt="...">
+						<h4>회원 전용 쿠폰</h4>
+					</a>
+				</div>
+				<div class="card bg-white text-white card__size">
+					<a href="#" class="text-decoration-none"> <img
+						src="img/coupon/g102.jpg"
+						class="card-img-top card-img__cover" alt="...">
+						<h4>회원 전용 쿠폰</h4>
+					</a>
+				</div>
+			</div>
+
+			<div class="card-deck card__deck-margin">
+				<div class="card bg-white text-white card__size">
+					<a href="#" class="text-decoration-none"> <img
+						src="img/coupon/GM-750.jpg"
+						class="card-img-top card-img__cover" alt="...">
 						<h4>비회원 전용 쿠폰</h4>
-					</div>
-				</a>
+					</a>
+				</div>
+				<div class="card bg-white text-white card__size">
+					<a href="#" class="text-decoration-none"> <img
+						src="img/coupon/odysseyg9.jpg"
+						class="card-img-top card-img__cover" alt="...">
+						<h4>비회원 전용 쿠폰</h4>
+					</a>
+				</div>
+				<div class="card bg-white text-white card__size">
+					<a href="#" class="text-decoration-none"> <img
+						src="img/coupon/RYZEN5600.jpg"
+						class="card-img-top card-img__cover" alt="...">
+						<h4>비회원 전용 쿠폰</h4>
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -261,15 +279,17 @@
 			} else {
 		%>
 		<div class="controller__menu">
-			<h6> <%=loginMember.getId() %>님 환영합니다.</h6>
+			<h6>
+				<%=loginMember.getId()%>님 환영합니다.
+			</h6>
 		</div>
 		<div class="controller__menu">
-			<button type="button" class="btn btn-primary btn-sm btn-block" onclick="location.href='logout.do'">로그아웃</button>
+			<button type="button" class="btn btn-primary btn-sm btn-block"
+				onclick="location.href='logout.do'">로그아웃</button>
 		</div>
 		<div class="controller__menu">
-			<button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal"
-
-		data-target="#profileModal">프로필 수정</button>
+			<button type="button" class="btn btn-primary btn-sm btn-block"
+				data-toggle="modal" data-target="#profileModal">프로필 수정</button>
 		</div>
 		<%
 			}
@@ -279,12 +299,12 @@
 			<a class="btn btn-primary btn-sm btn-block " href="goodsListCart.do">장바구니</a>
 		</div>
 		<div class="controller__menu ">
-			<span class = "text-center">최근본상품</span>
-			<%for(int i = 0; i < todayImageList.size();i++) { %>
+			<span class="text-center">최근본상품</span>
+			
 			<div>
-			<img src="images/<%=todayImageList.get(i).getImage() %>" id="todayImage" />
+				
 			</div>
-			<%} %>
+			
 		</div>
 	</div>
 
@@ -426,13 +446,13 @@
 			</div>
 		</div>
 	</div>
-	
 
-	
 
- 
 
-<!-- 2020/12/04 강현우 프로필 수정 -->
+
+
+
+	<!-- 2020/12/04 강현우 프로필 수정 -->
 	<div class="modal fade" id="profileModal" data-backdrop="static"
 		data-keyboard="false" tabindex="-1"
 		aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -492,14 +512,153 @@
 						<button type="submit" class="btn btn-primary form-control">변경</button>
 					</form>
 				</div>
-				
+
 			</div>
 		</div>
 	</div>
 
 	<!-- 프로필 수정 end -->
 
+	<!-- 2020-12-08 haesu -->
+	<div class="modal fade" id="Snote" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog__size">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">세부정보</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div>
+						<img style="width: 890px;"
+							src="http://ai.esmplus.com/gded/i/s/20201105/14/16045528895220704521.jpg">
+					</div>
+					<div>
+						<img style="width: 890px;"
+							src="http://ai.esmplus.com/gded/i/s/20201109/14/1604900967901eb863b2.jpg">
+					</div>
+				</div>
 
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="LGDesk" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog__size">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">세부정보</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div>
+						<img style="width: 890px;"
+							src="http://cms.ygoon.com/editorStore/file/202011/26/14c55f83e3154dbd8063f48934bbe884.jpg">
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="LEM70t" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog__size">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">세부정보</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div>
+						<img style="width: 890px;"
+							src="http://gi.esmplus.com/hpinvent/PC/LENOVO/M70T/11EVS00B00/11EVS00B00.png">
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+	<div class="modal fade" id="BHP190ML" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog__size">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">세부정보</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div>
+						<img style="width: 890px;"
+							src="http://www.pc4all.co.kr/imgdata3/iteminfoimage/2019/12/17/rewq4321_5.jpg">
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+	<div class="modal fade" id="ADPC4-21300" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog__size">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">세부정보</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div>
+						<img style="width: 890px;"
+							src="https://shopping-phinf.pstatic.net/20200609_15_27/f9668473-82e6-431e-b712-f2c29a7cedb4/%EC%88%98%EC%A0%95%EB%90%A8_DDR4_detail_890_final.jpg">
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+	<div class="modal fade" id="CG6" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog__size">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">세부정보</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div>
+						<img style="width: 890px;"
+							src="https://ssl.pstatic.net/imgshopping/spec/157/30/27/15730273792_0_20181018115519.jpg">
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- end -->
 	<!-- Optional JavaScript -->
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script

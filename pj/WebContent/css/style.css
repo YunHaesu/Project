@@ -13,6 +13,8 @@ font-family: 'Noto Sans KR', sans-serif;
 /*goodsList.css*/
 
 @import "goods/goodsList.css";
+@import "goods/goodscard.css";
+@import "goods/modal.css";
 
 
 h1, h2, h3, h4, .navbar-brand {

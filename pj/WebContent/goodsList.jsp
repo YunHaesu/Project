@@ -4,8 +4,8 @@
 <%@ page import="vo.Member, vo.Goods"%>
 <%
 	Member loginMember = (Member) session.getAttribute("loginMember");
-	ArrayList<Goods> goodsList = (ArrayList<Goods>) request.getAttribute("goodsList");
-	
+ArrayList<Goods> goodsList = (ArrayList<Goods>) request.getAttribute("goodsList");
+
 int cnt = 0;
 %>
 <!DOCTYPE html>
@@ -43,10 +43,8 @@ int cnt = 0;
 			<span class="navbar-toggler-icon navbar-toggler__nohide"></span>
 		</button>
 
-		<ul>
-			<li><a></a></li>
-		</ul>
-		<div class="collapse navbar-collapse mr-4" id="navbarNavDropdown">
+		<div class = "navbar__icon"><a href = "index.do"><img  class = "navbar__icon-image"alt="-" src="img/EzIcon.jpg"></a> </div>
+		<div class="collapse navbar-collapse mx-auto" id="navbarNavDropdown">
 			<ul class="navbar-nav">
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
@@ -56,12 +54,12 @@ int cnt = 0;
 
 						<a class="dropdown-item" href="goodsList.do?kind=cpu">CPU</a> <a
 							class="dropdown-item" href="goodsList.do?kind=cooler">쿨러/튜닝</a> <a
-							class="dropdown-item" href="goodsList.do?kind=mainboard">메인보드</a> <a
-							class="dropdown-item" href="goodsList.do?kind=memory">메모리</a> <a
-							class="dropdown-item" href="goodsList.do?kind=graphic">그래픽카드</a> <a
-							class="dropdown-item" href="goodsList.do?kind=SSD">SSd</a> <a
-							class="dropdown-item" href="goodsList.do?kind=harddisk">하드디스크</a> <a
-							class="dropdown-item" href="goodsList.do?kind=sidedisk">외장HDD/SSD</a>
+							class="dropdown-item" href="goodsList.do?kind=mainboard">메인보드</a>
+						<a class="dropdown-item" href="goodsList.do?kind=memory">메모리</a> <a
+							class="dropdown-item" href="goodsList.do?kind=graphic">그래픽카드</a>
+						<a class="dropdown-item" href="goodsList.do?kind=SSD">SSd</a> <a
+							class="dropdown-item" href="goodsList.do?kind=harddisk">하드디스크</a>
+						<a class="dropdown-item" href="goodsList.do?kind=sidedisk">외장HDD/SSD</a>
 						<a class="dropdown-item" href="goodsList.do?kind=case">케이스</a> <a
 							class="dropdown-item" href="goodsList.do?kind=power">파워</a> <a
 							class="dropdown-item" href="goodsList.do?kind=keyboard">키보드</a> <a
@@ -107,14 +105,14 @@ int cnt = 0;
 			<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
 		</form>
 	</nav>
-	
+
 	<section class="container__size" id="home">
 		<div class=" w-100 ">
 			<div id="carouselExampleControls"
 				class="carousel slide w-100 container__center " data-ride="carousel">
 				<div class="carousel-inner w-100 ">
 					<div class="carousel-item active w-100">
-						<img src="img/attack.jpg" class="d-block w-100" alt="..."
+						<img src="img/come.png" class="d-block w-100" alt="..."
 							style="height: 400px">
 					</div>
 					<div class="carousel-item w-100">
@@ -122,7 +120,7 @@ int cnt = 0;
 							style="height: 400px">
 					</div>
 					<div class="carousel-item w-100">
-						<img src="img/come.png" class="d-block w-100" alt="..."
+						<img src="img/attack.jpg" class="d-block w-100" alt="..."
 							style="height: 400px">
 					</div>
 				</div>
@@ -139,18 +137,23 @@ int cnt = 0;
 		</div>
 	</section>
 	<div class="startLine text-center">
-		<p class="startLine__text"><%=goodsList.get(1).getKind() %></p>
+		<p class="startLine__text"><%=goodsList.get(1).getKind()%></p>
 	</div>
 	<br>
-		<%
-			for (int i = 0; i < goodsList.size(); i++) {
-				if(i%3 == 0) {
-		%>
+	<%
+		for (int i = 0; i < goodsList.size(); i++) {
+		if (i % 3 == 0) {
+	%>
 	<div class="card-deck">
-				<%} %>
-			<div class="card goods__card-size " style="width: 18rem;">
-				<img src="./img/<%=goodsList.get(i).getImage()%>"
-					class="card-img-top card-img__size" alt="...">
+		<%
+			}
+		%>
+
+		<div class="card goods__card-size">
+			<a data-toggle="modal"
+				data-target="#<%=goodsList.get(i).getModalip()%>"> <img
+				src="./img/<%=goodsList.get(i).getImage()%>"
+				class="card-img-top card-img__size" alt="...">
 				<div class="card-body">
 					<p class="card-text">
 						상품명:
@@ -158,13 +161,24 @@ int cnt = 0;
 						<%=goodsList.get(i).getPrice()%><br />
 					</p>
 				</div>
-			</div>
-			<%if(i % 3 == 2) { %>
+			</a>
+		</div>
+		<%
+			if (i % 3 == 2) {
+		%>
 	</div>
-		<%} %>
-		<%if(i % 6 ==5) {%>
-		
-	<%break;}} %>
+	<%
+		}
+	%>
+	<%
+		if (i % 6 == 5) {
+	%>
+
+	<%
+		break;
+	}
+	}
+	%>
 
 	<div class="controller">
 		<%
@@ -350,6 +364,32 @@ int cnt = 0;
 		</div>
 	</div>
 	<!-- end -->
+	<%
+		for (int i = 0; i < goodsList.size(); i++) {
+	%>
+	<div class="modal fade" id="<%=goodsList.get(i).getModalip()%>"
+		tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog__size">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">제품 소개</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div>
+						<img class = "modal-image__size" alt="-" src="<%=goodsList.get(i).getModalimage()%>">
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<%
+		}
+	%>
 
 
 
@@ -368,6 +408,8 @@ int cnt = 0;
 	<script
 		src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="js/addr.js"></script>
+	<script src="https://kit.fontawesome.com/6478f529f2.js"
+		crossorigin="anonymous"></script>
 </body>
 </html>
 

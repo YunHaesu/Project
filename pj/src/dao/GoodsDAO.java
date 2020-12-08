@@ -46,7 +46,7 @@ public class GoodsDAO {
 
 				do {
 						goodsList.add(new Goods(rs.getInt("id"), rs.getString("kind"), rs.getString("name"),
-								rs.getInt("price"), rs.getString("image")));
+								rs.getInt("price"), rs.getString("image"), rs.getString("modalip"),rs.getString("modalimage")));
 					// 객체가 있다면 do를 해라
 				} while (rs.next());
 			}
@@ -114,7 +114,7 @@ public class GoodsDAO {
 
 			if (rs.next()) {
 				goods = new Goods(rs.getInt("id"), rs.getString("kind"), rs.getString("name"), rs.getInt("price"),
-						rs.getString("image"));
+						rs.getString("image"), rs.getString("modalip"),rs.getString("modalimage"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
