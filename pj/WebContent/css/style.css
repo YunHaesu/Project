@@ -30,3 +30,6 @@ body {
 .navbar {
 	border-bottom: #E53935 3px solid;
 }
+.footer__color{
+	background:rgba(187,234,255,0.5);
+}

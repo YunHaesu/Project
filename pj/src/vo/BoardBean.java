@@ -14,6 +14,9 @@ public class BoardBean {
 	private int board_re_seq;
 	private int board_readcount;
 	private Date board_date;
+	
+	
+	
 
 	public int getBoard_num() {
 		return board_num;

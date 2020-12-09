@@ -5,7 +5,7 @@
 <%@ page import="java.util.HashMap,java.util.ArrayList"%>
 <%
 	Member loginMember = (Member) session.getAttribute("loginMember");
-	ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("todayImageList");
+ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("todayImageList");
 %>
 <!DOCTYPE html>
 <html>
@@ -40,7 +40,7 @@
 			aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon navbar-toggler__nohide"></span>
 		</button>
-		<div class="navbar__icon">
+		<div class="navbar__icon d-lg-block d-none">
 			<a href="index.do"><img class="navbar__icon-image" alt="-"
 				src="img/EzIcon.jpg"></a>
 		</div>
@@ -83,23 +83,24 @@
 					aria-haspopup="true" aria-expanded="false"> 브랜드PC </a>
 					<div class="dropdown-menu "
 						aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="#">삼성전자</a> <a
-							class="dropdown-item" href="#">HP</a> <a class="dropdown-item"
-							href="#">LG전자</a> <a class="dropdown-item" href="#">레노버</a> <a
-							class="dropdown-item" href="#">DELL</a> <a class="dropdown-item"
-							href="#">ASUS</a>
+						<a class="dropdown-item" href="pcList.do?kind=SAMSUNG">삼성전자</a> <a
+							class="dropdown-item" href="pcList.do?kind=HP">HP</a> <a
+							class="dropdown-item" href="pcList.do?kind=LG">LG전자</a> <a
+							class="dropdown-item" href="pcList.do?kind=LENOVO">레노버</a> <a
+							class="dropdown-item" href="pcList.do?kind=DELL">DELL</a> <a
+							class="dropdown-item" href="pcList.do?kind=ASUS">ASUS</a>
 					</div></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"> 커뮤니티 </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="#">컴퓨터 리뷰 커뮤니티</a> <a
-							class="dropdown-item" href="#">컴퓨터 추천 커뮤니티</a>
+						<a class="dropdown-item" href="boardList.do">컴퓨터 리뷰 커뮤니티</a> <a
+							class="dropdown-item" href="boardList.do">컴퓨터 추천 커뮤니티</a>
 					</div></li>
 			</ul>
 		</div>
-		<form class="form-inline">
+		<form class="form-inline d-lg-block d-none">
 			<input class="form-control mr-sm-2" type="search"
 				placeholder="Search" aria-label="Search">
 			<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
@@ -108,6 +109,7 @@
 	<!-- end -->
 
 	<!-- help  haesu  2020-12-02 -->
+	<div class = "container">
 	<section class="container__size" id="home">
 		<div class=" w-100 ">
 			<div id="carouselExampleControls"
@@ -198,63 +200,65 @@
 	<!-- end -->
 
 	<!-- 2020-12-02 haesu and gang -->
-	<div class="card text-center m-3 ">
-		<div class="card-header">
-			<ul class="nav nav-tabs card-header-tabs">
-				<li class="nav-item"><a class="nav-link active" href="#">공지사항</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="#">이벤트/쿠폰</a></li>
-			</ul>
-		</div>
-		<div class="card-body tab-info">
-			<h1>공지사항 창입니다.</h1>
-		</div>
-		<div class="card-body d-none tab-info mx-auto">
-			<div class="card-deck card__deck-margin">
-				<div class="card bg-white text-white card__size">
-					<a href="#" class="text-decoration-none"> <img
-						src="img/coupon/RTX3060coupon.jpg"
-						class="card-img-top card-img__cover" alt="...">
-						<h4>회원 전용 쿠폰</h4>
-					</a>
-				</div>
-				<div class="card bg-white text-white card__size">
-					<a href="#" class="text-decoration-none"> <img
-						src="img/coupon/AAL300M.jpg"
-						class="card-img-top card-img__cover" alt="...">
-						<h4>회원 전용 쿠폰</h4>
-					</a>
-				</div>
-				<div class="card bg-white text-white card__size">
-					<a href="#" class="text-decoration-none"> <img
-						src="img/coupon/g102.jpg"
-						class="card-img-top card-img__cover" alt="...">
-						<h4>회원 전용 쿠폰</h4>
-					</a>
-				</div>
+	<div class="container pt-2">
+		<div class="card text-center m-3 ">
+			<div class="card-header">
+				<ul class="nav nav-tabs card-header-tabs">
+					<li class="nav-item"><a class="nav-link active" href="#">공지사항</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">이벤트/쿠폰</a></li>
+				</ul>
 			</div>
+			<div class="card-body tab-info">
+				<a href="boardWriteForm.do">게시판글쓰기</a>
+			</div>
+			<div class="card-body d-none tab-info mx-auto">
+				<div class="card-deck card__deck-margin">
+					<div class="card bg-white text-white card__size">
+						<a href="#" class="text-decoration-none"> <img
+							src="img/coupon/RTX3060coupon.jpg"
+							class="card-img-top card-img__cover" alt="...">
+							<h4>회원 전용 쿠폰</h4>
+						</a>
+					</div>
+					<div class="card bg-white text-white card__size">
+						<a href="#" class="text-decoration-none"> <img
+							src="img/coupon/AAL300M.jpg" class="card-img-top card-img__cover"
+							alt="...">
+							<h4>회원 전용 쿠폰</h4>
+						</a>
+					</div>
+					<div class="card bg-white text-white card__size">
+						<a href="#" class="text-decoration-none"> <img
+							src="img/coupon/g102.jpg" class="card-img-top card-img__cover"
+							alt="...">
+							<h4>회원 전용 쿠폰</h4>
+						</a>
+					</div>
+				</div>
 
-			<div class="card-deck card__deck-margin">
-				<div class="card bg-white text-white card__size">
-					<a href="#" class="text-decoration-none"> <img
-						src="img/coupon/GM-750.jpg"
-						class="card-img-top card-img__cover" alt="...">
-						<h4>비회원 전용 쿠폰</h4>
-					</a>
-				</div>
-				<div class="card bg-white text-white card__size">
-					<a href="#" class="text-decoration-none"> <img
-						src="img/coupon/odysseyg9.jpg"
-						class="card-img-top card-img__cover" alt="...">
-						<h4>비회원 전용 쿠폰</h4>
-					</a>
-				</div>
-				<div class="card bg-white text-white card__size">
-					<a href="#" class="text-decoration-none"> <img
-						src="img/coupon/RYZEN5600.jpg"
-						class="card-img-top card-img__cover" alt="...">
-						<h4>비회원 전용 쿠폰</h4>
-					</a>
+				<div class="card-deck card__deck-margin">
+					<div class="card bg-white text-white card__size">
+						<a href="#" class="text-decoration-none"> <img
+							src="img/coupon/GM-750.jpg" class="card-img-top card-img__cover"
+							alt="...">
+							<h4>비회원 전용 쿠폰</h4>
+						</a>
+					</div>
+					<div class="card bg-white text-white card__size">
+						<a href="#" class="text-decoration-none"> <img
+							src="img/coupon/odysseyg9.jpg"
+							class="card-img-top card-img__cover" alt="...">
+							<h4>비회원 전용 쿠폰</h4>
+						</a>
+					</div>
+					<div class="card bg-white text-white card__size">
+						<a href="#" class="text-decoration-none"> <img
+							src="img/coupon/RYZEN5600.jpg"
+							class="card-img-top card-img__cover" alt="...">
+							<h4>비회원 전용 쿠폰</h4>
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -300,15 +304,13 @@
 		</div>
 		<div class="controller__menu ">
 			<span class="text-center">최근본상품</span>
-			
-			<div>
-				
-			</div>
-			
+
+			<div></div>
+
 		</div>
 	</div>
 
-	<footer class="text-center bg-dark text-white">
+	<footer class="text-center text-white footer__color">
 		<div class="footer-above">
 			<div class="container pt-4">
 				<div class="row">
@@ -341,6 +343,7 @@
 			</div>
 		</div>
 	</footer>
+	</div>
 	<!-- end -->
 
 	<!-- Login Modal  2020-12-03 haesu-->

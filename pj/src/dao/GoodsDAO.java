@@ -125,4 +125,34 @@ public class GoodsDAO {
 		}
 		return goods;
 	}
+	
+	public static ArrayList<Goods> selectpcList(String kind) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<Goods> pcList = null;
+		
+		try {
+			pstmt = conn.prepareStatement("select * from pc where kind = ?");
+			pstmt.setString(1, kind);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				pcList = new ArrayList<Goods>();
+				// 객체를 생성하고
+
+				do {
+					pcList.add(new Goods(rs.getInt("id"), rs.getString("kind"), rs.getString("name"),
+								rs.getInt("price"), rs.getString("image"), rs.getString("modalip"),rs.getString("modalimage")));
+					// 객체가 있다면 do를 해라
+				} while (rs.next());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return pcList;
+	}
 }
