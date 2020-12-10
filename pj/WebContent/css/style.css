@@ -33,3 +33,10 @@ body {
 .footer__color{
 	background:rgba(187,234,255,0.5);
 }
+
+input::-webkit-input-placeholder{
+	text-align: center;
+}
+.body__margin-top{
+	margin-top: 200px;
+}

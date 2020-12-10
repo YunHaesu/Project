@@ -1,15 +1,15 @@
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="vo.Member, vo.Goods"%>
 <%@ page import="java.util.HashMap,java.util.ArrayList"%>
 <%@page import="vo.PageInfo"%>
 <%@page import="vo.BoardBean"%>
+<%@page import="vo.RecommandBean"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 <%
-	ArrayList<BoardBean> articleList = (ArrayList<BoardBean>) request.getAttribute("articleList");
+	ArrayList<RecommandBean> articleList = (ArrayList<RecommandBean>) request.getAttribute("articleList");
 PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 int listCount = pageInfo.getListCount();
 int nowPage = pageInfo.getPage();
@@ -122,7 +122,7 @@ ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("today
 	</nav>
 	<!-- end -->
 
-	<div id="main" class = "">
+	<div id="main" class= "body__margin-top">
 		<div class="container pt-4 mt-4">
 			<div class="card text-center m-3 ">
 				<h2>ezCOM 게시판</h2>
@@ -142,13 +142,13 @@ ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("today
 							for (int i = 0; i < articleList.size(); i++) {
 						%>
 						<tr>
-							<td><%=articleList.get(i).getBoard_num()%></td>
+							<td><%=articleList.get(i).getRecommand_num()%></td>
 
 							<td>
 								<%
-									if (articleList.get(i).getBoard_re_lev() != 0) {
+									if (articleList.get(i).getRecommand_re_lev() != 0) {
 								%> <%
- 	for (int a = 0; a <= articleList.get(i).getBoard_re_lev() * 2; a++) {
+ 	for (int a = 0; a <= articleList.get(i).getRecommand_re_lev() * 2; a++) {
  %> &nbsp; <%
  	}
  %> ▶ <%
@@ -156,14 +156,14 @@ ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("today
  %> <%
  	}
  %> <a
-								href="boardDetail.do?board_num=<%=articleList.get(i).getBoard_num()%>&page=<%=nowPage%>">
-									<%=articleList.get(i).getBoard_subject()%>
+								href="recommandDetail.do?recommand_num=<%=articleList.get(i).getRecommand_num()%>&page=<%=nowPage%>">
+									<%=articleList.get(i).getRecommand_subject()%>
 							</a>
 							</td>
 
-							<td><%=articleList.get(i).getBoard_name()%></td>
-							<td><%=articleList.get(i).getBoard_date()%></td>
-							<td><%=articleList.get(i).getBoard_readcount()%></td>
+							<td><%=articleList.get(i).getRecommand_name()%></td>
+							<td><%=articleList.get(i).getRecommand_date()%></td>
+							<td><%=articleList.get(i).getRecommand_readcount()%></td>
 						</tr>
 						<%
 							}
@@ -171,17 +171,15 @@ ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("today
 					
 				</table>
 				<br>
-						<button type="button" class="btn btn-info float-primary" >
-							<a href="boardWriteForm.do">글쓰기</a>
-						</button>
+							<a href="recommandWriteForm.do" class="btn btn-primary">글쓰기</a>
 					</div>
 				</div>
 				<nav aria-label="Page navigation example">
 					<ul class="pagination justify-content-center">
 						<li class="page-item"><a class="page-link"
-							href="boardList.do?page=<%=nowPage - 1%>">이전</a></li>
+							href="recommandList.do?page=<%=nowPage - 1%>">이전</a></li>
 						<li class="page-item"><a class="page-link"
-							href="boardList.do?page=<%=nowPage + 1%>">다음</a></li>
+							href="recommandList.do?page=<%=nowPage + 1%>">다음</a></li>
 					</ul>
 				</nav>
 			</div>

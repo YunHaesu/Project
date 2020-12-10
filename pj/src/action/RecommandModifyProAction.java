@@ -5,20 +5,20 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.BoardModifyProService;
+import svc.RecommandModifyProService;
 import vo.ActionForward;
-import vo.BoardBean;
+import vo.RecommandBean;
 
-public class BoardModifyProAction implements Action {
+public class RecommandModifyProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = null;
 		boolean isModifySuccess = false;
-		int board_num = Integer.parseInt(request.getParameter("board_num"));
-		BoardBean article = new BoardBean();
-		BoardModifyProService boardModifyProService = new BoardModifyProService();
-		boolean isRightUser = boardModifyProService.isArtcleWriter(board_num, request.getParameter("board_pass"));
+		int recommand_num = Integer.parseInt(request.getParameter("recommand_num"));
+		RecommandBean article = new RecommandBean();
+		RecommandModifyProService recommandModifyProService = new RecommandModifyProService();
+		boolean isRightUser = recommandModifyProService.isArtcleWriter(recommand_num, request.getParameter("recommand_pass"));
 
 		if (!isRightUser) {
 			response.setContentType("text/html;charset=UTF-8");
@@ -29,10 +29,10 @@ public class BoardModifyProAction implements Action {
 			out.println("history.back();");
 			out.println("</script>");
 		} else {
-			article.setBoard_num(board_num);
-			article.setBoard_subject(request.getParameter("board_subject"));
-			article.setBoard_content(request.getParameter("board_content"));
-			isModifySuccess = boardModifyProService.modifyArticle(article);
+			article.setRecommand_num(recommand_num);
+			article.setRecommand_subject(request.getParameter("recommand_subject"));
+			article.setRecommand_content(request.getParameter("recommand_content"));
+			isModifySuccess = recommandModifyProService.modifyArticle(article);
 
 			if (!isModifySuccess) {
 				response.setContentType("text/html;charset=UTF-8");
@@ -44,7 +44,7 @@ public class BoardModifyProAction implements Action {
 			} else {
 				forward = new ActionForward();
 				forward.setRedirect(true);
-				forward.setPath("boardDetail.do?board_num=" + article.getBoard_num() + "&page=" + request.getParameter("page"));
+				forward.setPath("recommandDetail.do?recommand_num=" + article.getRecommand_num() + "&page=" + request.getParameter("page"));
 			}
 		}
 		return forward;

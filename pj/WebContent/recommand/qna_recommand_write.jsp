@@ -1,30 +1,21 @@
 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="vo.Member, vo.Goods"%>
 <%@ page import="java.util.HashMap,java.util.ArrayList"%>
 <%@page import="vo.PageInfo"%>
 <%@page import="vo.BoardBean"%>
+<%@page import="vo.RecommandBean"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.text.SimpleDateFormat"%>
-<%@page import="vo.BoardBean"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%
 	Member loginMember = (Member) session.getAttribute("loginMember");
 ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("todayImageList");
 %>
-<%
-	BoardBean article = (BoardBean) request.getAttribute("article");
-%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>MVC 게시판</title>
-<script type="text/javascript">
-	function modifyboard() {
-		modifyform.submit();
-	}
-</script>
 <!-- Required meta tags -->
 <meta charset="utf-8" />
 <meta name="viewport"
@@ -122,49 +113,51 @@ ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("today
 		</form>
 	</nav>
 	<!-- end -->
-	<!-- 2020/12/8 강현우 글 수정 시작 -->
-	<section id="writeForm">
-		<div class="container w-50">
-			<div class="card text-center m-3 ">
-				<h2>ezCom 글 수정</h2>
-				<form action="boardModifyPro.do" method="post" name="modifyform">
-					<input type="hidden" name="board_num"
-						value="<%=article.getBoard_num()%>" />
-					<div class="form-col">
-						<div class="form-group col-md-2">
-							<input type="hidden" name="page"
-								value="<%=request.getParameter("page")%>" /> <label
-								for="board_name">글쓴이</label> <input type="text"
-								class="form-control" id="board_name" name="board_name"
-								required="required" value="<%=article.getBoard_name()%>" />
-						</div>
-					</div>
-					<div class="form-group col-md-2">
-						<label for="board_pass">비밀번호</label> <input type="password"
-							class="form-control" id="board_pass" name="board_pass"
+	<!-- 2020/12/7 강현우 게시판 글 등록 시작 -->
+	<section id="writeForm" class="body__margin-top">
+		<div class="container" style="width: 40%">
+			<div class="text-center ">
+				<h2>ezCom 글 등록</h2>
+			</div>
+			<form action="recommandWritePro.do" method="post"
+				enctype="multipart/form-data" name="recommandform">
+				<div class="form-col">
+					<div class="form-group">
+						<label for="recommand_name">글쓴이</label> <input type="text"
+							class="form-control" id="recommand_name" name="recommand_name"
 							required="required" />
 					</div>
-					<div class="form-group col-md-2">
-						<label for="board_subject">제 목</label> <input type="text"
-							class="form-control" id="board_subject" name="board_subject"
-							value="<%=article.getBoard_subject()%>" required="required" />
+					<div class="form-group">
+						<label for="recommand_pass">비밀번호</label> <input type="password"
+							class="form-control" id="recommand_pass" name="recommand_pass"
+							required="required" />
 					</div>
-					<div class="form-group col-md-6">
-						<label for="board_content">내 용</label>
+					<div class="form-group">
+						<label for="recommand_subject">제 목</label> <input type="text"
+							class="form-control" id="recommand_subject"
+							name="recommand_subject" required="required" />
+					</div>
+					<div class="form-group">
+						<label for="recommand_content">내 용</label>
 						<textarea class="form-control is-invalid" id="validationTextarea"
-							name="board_content" placeholder="내용을 적어 주세요." cols="40"
-							rows="15" style="resize: none;" required><%=article.getBoard_content()%></textarea>
+							name="recommand_content" placeholder="내용을 적어 주세요." cols="40"
+							rows="15" style="resize: none;" required></textarea>
 					</div>
-					<section id="commandCell">
-						<a class="btn btn-primary" href="javascript:modifyboard()"
-							role="button">수정</a>&nbsp;&nbsp; <a class="btn btn-primary"
-							href="javascript:history.go(-1)" role="button">뒤로</a>
-					</section>
-				</form>
-			</div>
+					<div class="form-group">
+						<label for="board_file">파일 첨부</label> <input type="file"
+							class="form-control" name="board_file" id="board_file"
+							accept="image/*" />
+					</div>
+				</div>
+				<button type="submit" class="btn btn-primary">글 등록</button>
+				<button type="reset" class="btn btn-info">다시 쓰기</button>
+				<a class="btn btn-primary" href="javascript:history.go(-1)"
+					role="button">뒤로</a>
+			</form>
+
 		</div>
 	</section>
-	<!-- 글 수정 끝 -->
+	<!-- 게시판 글 등록 끝 -->
 	<!-- 2020-12-02 haesu -->
 	<div class="controller">
 		<%
@@ -423,146 +416,6 @@ ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("today
 
 	<!-- 프로필 수정 end -->
 
-	<!-- 2020-12-08 haesu -->
-	<div class="modal fade" id="Snote" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog__size">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">세부정보</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div>
-						<img style="width: 890px;"
-							src="http://ai.esmplus.com/gded/i/s/20201105/14/16045528895220704521.jpg">
-					</div>
-					<div>
-						<img style="width: 890px;"
-							src="http://ai.esmplus.com/gded/i/s/20201109/14/1604900967901eb863b2.jpg">
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
-	<div class="modal fade" id="LGDesk" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog__size">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">세부정보</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div>
-						<img style="width: 890px;"
-							src="http://cms.ygoon.com/editorStore/file/202011/26/14c55f83e3154dbd8063f48934bbe884.jpg">
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
-	<div class="modal fade" id="LEM70t" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog__size">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">세부정보</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div>
-						<img style="width: 890px;"
-							src="http://gi.esmplus.com/hpinvent/PC/LENOVO/M70T/11EVS00B00/11EVS00B00.png">
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
-
-	<div class="modal fade" id="BHP190ML" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog__size">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">세부정보</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div>
-						<img style="width: 890px;"
-							src="http://www.pc4all.co.kr/imgdata3/iteminfoimage/2019/12/17/rewq4321_5.jpg">
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
-
-	<div class="modal fade" id="ADPC4-21300" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog__size">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">세부정보</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div>
-						<img style="width: 890px;"
-							src="https://shopping-phinf.pstatic.net/20200609_15_27/f9668473-82e6-431e-b712-f2c29a7cedb4/%EC%88%98%EC%A0%95%EB%90%A8_DDR4_detail_890_final.jpg">
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
-
-	<div class="modal fade" id="CG6" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog__size">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">세부정보</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div>
-						<img style="width: 890px;"
-							src="https://ssl.pstatic.net/imgshopping/spec/157/30/27/15730273792_0_20181018115519.jpg">
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
-	<!-- end -->
 	<!-- Optional JavaScript -->
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script

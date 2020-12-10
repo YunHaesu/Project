@@ -98,8 +98,8 @@ int cnt = 0;
 					id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"> 커뮤니티 </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="#">컴퓨터 리뷰 커뮤니티</a> <a
-							class="dropdown-item" href="#">컴퓨터 추천 커뮤니티</a>
+						<a class="dropdown-item" href="boardList.do">컴퓨터 리뷰 커뮤니티</a> <a
+							class="dropdown-item" href="recommandList.do">컴퓨터 추천 커뮤니티</a>
 					</div></li>
 			</ul>
 		</div>

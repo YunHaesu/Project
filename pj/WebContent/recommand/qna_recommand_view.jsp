@@ -1,16 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page import="java.util.HashMap,java.util.ArrayList"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="vo.Member, vo.Goods"%>
+<%@ page import="java.util.HashMap,java.util.ArrayList"%>
+<%@page import="vo.PageInfo"%>
+<%@ page import="java.util.*"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@page import="vo.BoardBean"%>
+<%@page import="vo.RecommandBean"%>
+<%@page language="java" contentType="text/html; charset=UTF-8"%>
 <%
 	Member loginMember = (Member) session.getAttribute("loginMember");
-ArrayList<Goods> goodsList = (ArrayList<Goods>) request.getAttribute("goodsList");
-
-int cnt = 0;
+ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("todayImageList");
+%>
+<%
+	RecommandBean article = (RecommandBean) request.getAttribute("article");
+String nowPage = (String) request.getAttribute("page");
 %>
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<title>MVC 게시판</title>
 <!-- Required meta tags -->
 <meta charset="utf-8" />
 <meta name="viewport"
@@ -31,20 +41,22 @@ int cnt = 0;
 <link rel="stylesheet" href="css/style.css" />
 <title>컴퓨터 홈 쇼핑 사이트</title>
 </head>
+
 <body>
-	<!-- 2020-12-07 haesu -->
+	<!-- 2020-12-02 haesu -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
 		id="header">
-
 		<button class="navbar-toggler navbar-toggler__nohide" type="button"
 			data-toggle="collapse" data-target="#navbarNavDropdown"
 			aria-controls="navbarNavDropdown" aria-expanded="true"
 			aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon navbar-toggler__nohide"></span>
 		</button>
-
-		<div class = "navbar__icon d-lg-block d-none"><a href = "index.do"><img  class = "navbar__icon-image"alt="-" src="img/EzIcon.jpg"></a> </div>
-		<div class="collapse navbar-collapse mx-auto" id="navbarNavDropdown">
+		<div class="navbar__icon d-lg-block d-none">
+			<a href="index.do"><img class="navbar__icon-image" alt="-"
+				src="img/EzIcon.jpg"></a>
+		</div>
+		<div class="collapse navbar-collapse mr-4" id="navbarNavDropdown">
 			<ul class="navbar-nav">
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
@@ -84,10 +96,11 @@ int cnt = 0;
 					<div class="dropdown-menu "
 						aria-labelledby="navbarDropdownMenuLink">
 						<a class="dropdown-item" href="pcList.do?kind=SAMSUNG">삼성전자</a> <a
-							class="dropdown-item" href="pcList.do?kind=HP">HP</a> <a class="dropdown-item"
-							href="pcList.do?kind=LG">LG전자</a> <a class="dropdown-item" href="pcList.do?kind=LENOVO">레노버</a> <a
-							class="dropdown-item" href="pcList.do?kind=DELL">DELL</a> <a class="dropdown-item"
-							href="pcList.do?kind=ASUS">ASUS</a>
+							class="dropdown-item" href="pcList.do?kind=HP">HP</a> <a
+							class="dropdown-item" href="pcList.do?kind=LG">LG전자</a> <a
+							class="dropdown-item" href="pcList.do?kind=LENOVO">레노버</a> <a
+							class="dropdown-item" href="pcList.do?kind=DELL">DELL</a> <a
+							class="dropdown-item" href="pcList.do?kind=ASUS">ASUS</a>
 					</div></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
@@ -105,81 +118,43 @@ int cnt = 0;
 			<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
 		</form>
 	</nav>
-	<div class = "container">
-	<section class="container__size" id="home">
-		<div class=" w-100 ">
-			<div id="carouselExampleControls"
-				class="carousel slide w-100 container__center " data-ride="carousel">
-				<div class="carousel-inner w-100 ">
-					<div class="carousel-item active w-100">
-						<img src="img/come.png" class="d-block w-100" alt="..."
-							style="height: 400px">
-					</div>
-					<div class="carousel-item w-100">
-						<img src="img/norefund.png" class="d-block w-100" alt="..."
-							style="height: 400px">
-					</div>
-					<div class="carousel-item w-100">
-						<img src="img/attack.jpg" class="d-block w-100" alt="..."
-							style="height: 400px">
-					</div>
-				</div>
-				<a class="carousel-control-prev" href="#carouselExampleControls"
-					role="button" data-slide="prev"> <span
-					class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-					class="sr-only">Previous</span>
-				</a> <a class="carousel-control-next" href="#carouselExampleControls"
-					role="button" data-slide="next"> <span
-					class="carousel-control-next-icon" aria-hidden="true"></span> <span
-					class="sr-only">Next</span>
-				</a>
-			</div>
-		</div>
-	</section>
-	<div class="startLine text-center">
-		<p class="startLine__text"><%=goodsList.get(1).getKind()%></p>
-	</div>
-	<br>
-	<%
-		for (int i = 0; i < goodsList.size(); i++) {
-		if (i % 3 == 0) {
-	%>
-	<div class="card-deck">
-		<%
-			}
-		%>
+	<!-- end -->
+	<!-- 2020/12/8 게시판 상세보기 -->
+	<div class="container pt-4 body__margin-top">
+		<div class="text-center m-3 ">
+			<section id="articleForm">
+				<h2>글 내용 상세보기</h2>
+				<section id="basicInfoArea">
+					제 목 :
+					<%=article.getRecommand_subject()%>
+					<br />
+					<%
+						if (!(article.getRecommand_file() == null)) {
+					%>
+					<img src="/boardUpload/<%=article.getRecommand_file()%>" alt="-">
+					<%
+						}
+					%>
+				</section>
+				<section id="articleContentArea">
+					<%=article.getRecommand_content()%>
+				</section>
+			</section>
 
-		<div class="card goods__card-size">
-			<a data-toggle="modal"
-				data-target="#<%=goodsList.get(i).getModalip()%>"> <img
-				src="./img/<%=goodsList.get(i).getImage()%>"
-				class="card-img-top card-img__size" alt="...">
-				<div class="card-body">
-					<p class="card-text">
-						상품명:
-						<%=goodsList.get(i).getName()%><br /> 가격:
-						<%=goodsList.get(i).getPrice()%><br />
-					</p>
-				</div>
-			</a>
+			<section id="commandList">
+				<a class="btn btn-primary"
+					href="recommandReplyForm.do?recommand_num=<%=article.getRecommand_num()%>&page=<%=nowPage%>"
+					role="button">답변</a>&nbsp;&nbsp; <a class="btn btn-primary"
+					href="recommandModifyForm.do?recommand_num=<%=article.getRecommand_num()%>&page=<%=nowPage%>"
+					role="button">수정</a>&nbsp;&nbsp; <a class="btn btn-primary"
+					href="recommandDeleteForm.do?recommand_num=<%=article.getRecommand_num()%>&page=<%=nowPage%>"
+					role="button">삭제</a>&nbsp;&nbsp; <a class="btn btn-primary"
+					href="recommandList.do?page=<%=nowPage%>" role="button">목록</a>&nbsp;&nbsp;
+			</section>
 		</div>
-		<%
-			if (i % 3 == 2) {
-		%>
 	</div>
-	<%
-		}
-	%>
-	<%
-		if (i % 6 == 5) {
-	%>
-
-	<%
-		break;
-	}
-	}
-	%>
-	
+	<!-- 상세보기 끝 -->
+	<!-- 2020-12-02 haesu -->
 	<div class="controller">
 		<%
 			if (loginMember == null) {
@@ -208,7 +183,7 @@ int cnt = 0;
 		</div>
 		<div class="controller__menu">
 			<button type="button" class="btn btn-primary btn-sm btn-block"
-				data-toggle="modal" data-target="#profileModal">프로필</button>
+				data-toggle="modal" data-target="#profileModal">프로필 수정</button>
 		</div>
 		<%
 			}
@@ -219,11 +194,13 @@ int cnt = 0;
 		</div>
 		<div class="controller__menu ">
 			<span class="text-center">최근본상품</span>
+
 			<div></div>
+
 		</div>
 	</div>
 
-	<footer class="text-center footer__color text-white">
+	<footer class="text-center text-white footer__color">
 		<div class="footer-above">
 			<div class="container pt-4">
 				<div class="row">
@@ -256,7 +233,9 @@ int cnt = 0;
 			</div>
 		</div>
 	</footer>
-</div>
+	<!-- end -->
+
+	<!-- Login Modal  2020-12-03 haesu-->
 
 	<div class="modal fade" id="loginModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -291,8 +270,8 @@ int cnt = 0;
 			</div>
 		</div>
 	</div>
-
 	<!-- Join Modal -->
+
 	<div class="modal fade" id="joinModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -353,50 +332,84 @@ int cnt = 0;
 								placeholder="이메일" maxlength="20" required="required"
 								autocomplete="no" />
 						</div>
-
-
-						<!-- input타입 button은 value 값을 줘야함 -->
 						<button type="submit" class="btn btn-primary form-control">가입</button>
 					</form>
 				</div>
-
 			</div>
 		</div>
 	</div>
-	<!-- end -->
-	<%
-		for (int i = 0; i < goodsList.size(); i++) {
-	%>
-	<div class="modal fade" id="<%=goodsList.get(i).getModalip()%>"
-		tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog__size">
+
+
+
+
+
+
+	<!-- 2020/12/04 강현우 프로필 수정 -->
+	<div class="modal fade" id="profileModal" data-backdrop="static"
+		data-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">제품 소개</h5>
+					<h5 class="modal-title" id="staticBackdropLabel">프로필 수정 페이지</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<div>
-						<img class = "modal-image__size" alt="-" src="<%=goodsList.get(i).getModalimage()%>">
-					</div>
+					<form action="joinPro.do" method="post">
+						<div class="form-group">
+							<input type="password" class="form-control" name="passwd"
+								placeholder="비밀번호" maxlength="20" required="required"
+								autocomplete="off" />
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control" name="name"
+								placeholder="이름" maxlength="20" required="required"
+								autocomplete="off" />
+						</div>
+						<div class="form-group">
+							<input type="text" id="sample4_postcode" placeholder="우편번호"
+								class="form-control" name="addr1" required="required"
+								autocomplete="off"> <input type="button"
+								onclick="sample4_execDaumPostcode()" value="우편번호 찾기"
+								class="form-control"><input type="text"
+								id="sample4_roadAddress" placeholder="도로명주소"
+								class="form-control" name="addr2" required="required"
+								autocomplete="off"> <input class="form-control"
+								type="text" id="sample4_detailAddress" placeholder="상세주소"
+								name="addr3" required="required" autocomplete="off">
+						</div>
+						<div class="form-group">
+							<input type="number" class="form-control" name="age"
+								placeholder="나이" maxlength="20" required="required"
+								autocomplete="off" />
+						</div>
+						<div class="form-group">
+							<div class="btn-group" data-toggle="buttons">
+								<label class="btn btn-primary active"> <input
+									type="radio" class="d-none" name="gender" autocomplete="off"
+									value='M' checked="checked" />남자
+								</label> <label class="btn btn-primary"> <input type="radio"
+									class="d-none" name="gender" autocomplete="off" value='F' />여자
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<input type="email" class="form-control" name="email"
+								placeholder="이메일" maxlength="20" required="required"
+								autocomplete="no" />
+						</div>
+						<button type="submit" class="btn btn-primary form-control">변경</button>
+					</form>
 				</div>
 
 			</div>
 		</div>
 	</div>
-	<%
-		}
-	%>
 
-
-
-
-
-
-
+	<!-- 프로필 수정 end -->
 	<!-- Optional JavaScript -->
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script
@@ -408,11 +421,5 @@ int cnt = 0;
 	<script
 		src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="js/addr.js"></script>
-	<script src="https://kit.fontawesome.com/6478f529f2.js"
-		crossorigin="anonymous"></script>
 </body>
 </html>
-
-
-
-

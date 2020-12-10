@@ -33,7 +33,7 @@ public class BoardDeleteProService {
 			rollback(conn);
 			
 		}
-		if(conn != null) close(conn);
+		close(conn);
 		return isRemoveSuccess;
 	}
 

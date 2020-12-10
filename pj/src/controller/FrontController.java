@@ -23,6 +23,14 @@ import action.GoodsListAction;
 import action.JoinAction;
 import action.LoginAction;
 import action.PcListAction;
+import action.RecommandDeleteProAction;
+import action.RecommandDetailAction;
+import action.RecommandListAction;
+import action.RecommandModifyFormAction;
+import action.RecommandModifyProAction;
+import action.RecommandReplyFormAction;
+import action.RecommandReplyProAction;
+import action.RecommandWriteProAction;
 import vo.ActionForward;
 
 @WebServlet("*.do")
@@ -143,6 +151,72 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if(command.equals("/recommandWritePro.do")){
+				action = new RecommandWriteProAction();
+				try {
+				forward = action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else if(command.equals("/recommandList.do")){
+				action = new RecommandListAction();
+				try {
+				forward = action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else if(command.equals("/recommandDetail.do")){
+				action = new RecommandDetailAction();
+				try {
+				forward = action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else if(command.equals("/recommandReplyForm.do")){
+				action = new RecommandReplyFormAction();
+				try {
+				forward = action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else if(command.equals("/recommandReplyPro.do")){
+				action = new RecommandReplyProAction();
+				try {
+				forward = action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else if(command.equals("/recommandModifyForm.do")){
+				action = new RecommandModifyFormAction();
+				try {
+				forward = action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else if(command.equals("/recommandModifyPro.do")){
+				action = new RecommandModifyProAction();
+				try {
+				forward = action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else if(command.equals("/recommandWriteForm.do")){
+				forward = new ActionForward();
+				forward.setPath("/recommand/qna_recommand_write.jsp");
+			} else if(command.equals("/recommandDeleteForm.do")){
+				String nowPage = request.getParameter("page");
+				request.setAttribute("page", nowPage);
+				int recommand_num = Integer.parseInt(request.getParameter("recommand_num"));
+				request.setAttribute("recommand_num", recommand_num);
+				forward = new ActionForward();
+				forward.setPath("/recommand/qna_recommand_delete.jsp");
+			} else if(command.equals("/recommandDeletePro.do")){
+				action = new RecommandDeleteProAction();
+				try {
+				forward = action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			
 			
 		

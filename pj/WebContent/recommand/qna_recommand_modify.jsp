@@ -6,14 +6,14 @@
 <%@page import="vo.BoardBean"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.text.SimpleDateFormat"%>
-<%@page import="vo.BoardBean"%>
+<%@page import="vo.RecommandBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%
 	Member loginMember = (Member) session.getAttribute("loginMember");
 ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("todayImageList");
 %>
 <%
-	BoardBean article = (BoardBean) request.getAttribute("article");
+RecommandBean article = (RecommandBean) request.getAttribute("article");
 %>
 <!DOCTYPE html>
 <html>
@@ -123,37 +123,39 @@ ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("today
 	</nav>
 	<!-- end -->
 	<!-- 2020/12/8 강현우 글 수정 시작 -->
+		<div class="container pt-4 w-50 body__margin-top">
 	<section id="writeForm">
-		<div class="container w-50">
-			<div class="card text-center m-3 ">
+			<div class="text-center m-3 ">
+			
 				<h2>ezCom 글 수정</h2>
-				<form action="boardModifyPro.do" method="post" name="modifyform">
-					<input type="hidden" name="board_num"
-						value="<%=article.getBoard_num()%>" />
+				</div>
+				<form action="recommandModifyPro.do" method="post" name="modifyform">
+					<input type="hidden" name="recommand_num"
+						value="<%=article.getRecommand_num()%>" />
 					<div class="form-col">
-						<div class="form-group col-md-2">
+						<div class="form-group">
 							<input type="hidden" name="page"
 								value="<%=request.getParameter("page")%>" /> <label
-								for="board_name">글쓴이</label> <input type="text"
-								class="form-control" id="board_name" name="board_name"
-								required="required" value="<%=article.getBoard_name()%>" />
+								for="recommand_name">글쓴이</label> <input type="text"
+								class="form-control" id="recommand_name" name="recommand_name"
+								required="required" value="<%=article.getRecommand_name()%>" />
 						</div>
 					</div>
-					<div class="form-group col-md-2">
-						<label for="board_pass">비밀번호</label> <input type="password"
-							class="form-control" id="board_pass" name="board_pass"
+					<div class="form-group ">
+						<label for="recommand_pass">비밀번호</label> <input type="password"
+							class="form-control" id="recommand_pass" name="recommand_pass"
 							required="required" />
 					</div>
-					<div class="form-group col-md-2">
-						<label for="board_subject">제 목</label> <input type="text"
-							class="form-control" id="board_subject" name="board_subject"
-							value="<%=article.getBoard_subject()%>" required="required" />
+					<div class="form-group ">
+						<label for="recommand_subject">제 목</label> <input type="text"
+							class="form-control" id="recommand_subject" name="recommand_subject"
+							value="<%=article.getRecommand_subject()%>" required="required" />
 					</div>
-					<div class="form-group col-md-6">
-						<label for="board_content">내 용</label>
+					<div class="form-group ">
+						<label for="recommand_content">내 용</label>
 						<textarea class="form-control is-invalid" id="validationTextarea"
-							name="board_content" placeholder="내용을 적어 주세요." cols="40"
-							rows="15" style="resize: none;" required><%=article.getBoard_content()%></textarea>
+							name="recommand_content" placeholder="내용을 적어 주세요." cols="40"
+							rows="15" style="resize: none;" required><%=article.getRecommand_content()%></textarea>
 					</div>
 					<section id="commandCell">
 						<a class="btn btn-primary" href="javascript:modifyboard()"
@@ -161,9 +163,9 @@ ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("today
 							href="javascript:history.go(-1)" role="button">뒤로</a>
 					</section>
 				</form>
-			</div>
-		</div>
+			
 	</section>
+		</div>
 	<!-- 글 수정 끝 -->
 	<!-- 2020-12-02 haesu -->
 	<div class="controller">
