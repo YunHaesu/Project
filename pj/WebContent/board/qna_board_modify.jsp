@@ -123,15 +123,15 @@ ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("today
 	</nav>
 	<!-- end -->
 	<!-- 2020/12/8 강현우 글 수정 시작 -->
-	<section id="writeForm">
+	<section id="writeForm" class= "bbs__margin-top">
 		<div class="container w-50">
-			<div class="card text-center m-3 ">
-				<h2>ezCom 글 수정</h2>
+			<div class="card text-left m-3 ">
+				<h2>컴퓨터 리뷰 커뮤니티 글 수정</h2>
 				<form action="boardModifyPro.do" method="post" name="modifyform">
 					<input type="hidden" name="board_num"
 						value="<%=article.getBoard_num()%>" />
 					<div class="form-col">
-						<div class="form-group col-md-2">
+						<div class="form-group">
 							<input type="hidden" name="page"
 								value="<%=request.getParameter("page")%>" /> <label
 								for="board_name">글쓴이</label> <input type="text"
@@ -139,20 +139,20 @@ ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("today
 								required="required" value="<%=article.getBoard_name()%>" />
 						</div>
 					</div>
-					<div class="form-group col-md-2">
+					<div class="form-group">
 						<label for="board_pass">비밀번호</label> <input type="password"
 							class="form-control" id="board_pass" name="board_pass"
 							required="required" />
 					</div>
-					<div class="form-group col-md-2">
+					<div class="form-group">
 						<label for="board_subject">제 목</label> <input type="text"
 							class="form-control" id="board_subject" name="board_subject"
 							value="<%=article.getBoard_subject()%>" required="required" />
 					</div>
-					<div class="form-group col-md-6">
+					<div class="form-group">
 						<label for="board_content">내 용</label>
 						<textarea class="form-control is-invalid" id="validationTextarea"
-							name="board_content" placeholder="내용을 적어 주세요." cols="40"
+							name="board_content" placeholder="내용을 적어 주세요." cols="100"
 							rows="15" style="resize: none;" required><%=article.getBoard_content()%></textarea>
 					</div>
 					<section id="commandCell">

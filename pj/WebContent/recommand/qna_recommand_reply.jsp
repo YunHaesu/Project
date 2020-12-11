@@ -119,9 +119,10 @@ String nowPage = (String) request.getAttribute("page");
 	</nav>
 	<!-- end -->
 	<!-- 2020/12/8 강현우 게시판 글 답변 -->
-	<div class="container text-left w-50 body__margin-top">
+	<div class="container text-left w-50 bbs__margin-top">
 		<section id="writeForm">
 			<div class="text-center m-3 ">
+				<h2>컴퓨터 추천 커뮤니티 글 등록</h2>
 				<form action="recommandReplyPro.do" method="post"
 					name="recommandform">
 					<input type="hidden" name="page" value="<%=nowPage%>" /> <input

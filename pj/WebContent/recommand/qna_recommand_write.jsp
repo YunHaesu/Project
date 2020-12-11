@@ -114,7 +114,7 @@ ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("today
 	</nav>
 	<!-- end -->
 	<!-- 2020/12/7 강현우 게시판 글 등록 시작 -->
-	<section id="writeForm" class="body__margin-top">
+	<section id="writeForm" class="bbs__margin-top">
 		<div class="container" style="width: 40%">
 			<div class="text-center ">
 				<h2>ezCom 글 등록</h2>

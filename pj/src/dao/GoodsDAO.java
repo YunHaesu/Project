@@ -155,4 +155,33 @@ public class GoodsDAO {
 		}
 		return pcList;
 	}
+	public static ArrayList<Goods> selectComuList(String kind) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<Goods> comuList = null;
+		
+		try {
+			pstmt = conn.prepareStatement("select * from comu where kind = ?");
+			pstmt.setString(1, kind);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				comuList = new ArrayList<Goods>();
+				// 객체를 생성하고
+				
+				do {
+					comuList.add(new Goods(rs.getInt("id"), rs.getString("kind"), rs.getString("name"),
+							rs.getInt("price"), rs.getString("image"), rs.getString("modalip"),rs.getString("modalimage")));
+					// 객체가 있다면 do를 해라
+				} while (rs.next());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return comuList;
+	}
 }

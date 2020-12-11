@@ -123,49 +123,48 @@ RecommandBean article = (RecommandBean) request.getAttribute("article");
 	</nav>
 	<!-- end -->
 	<!-- 2020/12/8 강현우 글 수정 시작 -->
-		<div class="container pt-4 w-50 body__margin-top">
-	<section id="writeForm">
+	<div class="container pt-4 w-50 bbs__margin-top">
+		<section id="writeForm">
 			<div class="text-center m-3 ">
-			
 				<h2>ezCom 글 수정</h2>
+			</div>
+			<form action="recommandModifyPro.do" method="post" name="modifyform">
+				<input type="hidden" name="recommand_num"
+					value="<%=article.getRecommand_num()%>" />
+				<div class="form-col">
+					<div class="form-group">
+						<input type="hidden" name="page"
+							value="<%=request.getParameter("page")%>" /> <label
+							for="recommand_name">글쓴이</label> <input type="text"
+							class="form-control" id="recommand_name" name="recommand_name"
+							required="required" value="<%=article.getRecommand_name()%>" />
+					</div>
 				</div>
-				<form action="recommandModifyPro.do" method="post" name="modifyform">
-					<input type="hidden" name="recommand_num"
-						value="<%=article.getRecommand_num()%>" />
-					<div class="form-col">
-						<div class="form-group">
-							<input type="hidden" name="page"
-								value="<%=request.getParameter("page")%>" /> <label
-								for="recommand_name">글쓴이</label> <input type="text"
-								class="form-control" id="recommand_name" name="recommand_name"
-								required="required" value="<%=article.getRecommand_name()%>" />
-						</div>
-					</div>
-					<div class="form-group ">
-						<label for="recommand_pass">비밀번호</label> <input type="password"
-							class="form-control" id="recommand_pass" name="recommand_pass"
-							required="required" />
-					</div>
-					<div class="form-group ">
-						<label for="recommand_subject">제 목</label> <input type="text"
-							class="form-control" id="recommand_subject" name="recommand_subject"
-							value="<%=article.getRecommand_subject()%>" required="required" />
-					</div>
-					<div class="form-group ">
-						<label for="recommand_content">내 용</label>
-						<textarea class="form-control is-invalid" id="validationTextarea"
-							name="recommand_content" placeholder="내용을 적어 주세요." cols="40"
-							rows="15" style="resize: none;" required><%=article.getRecommand_content()%></textarea>
-					</div>
-					<section id="commandCell">
-						<a class="btn btn-primary" href="javascript:modifyboard()"
-							role="button">수정</a>&nbsp;&nbsp; <a class="btn btn-primary"
-							href="javascript:history.go(-1)" role="button">뒤로</a>
-					</section>
-				</form>
-			
-	</section>
-		</div>
+				<div class="form-group ">
+					<label for="recommand_pass">비밀번호</label> <input type="password"
+						class="form-control" id="recommand_pass" name="recommand_pass"
+						required="required" />
+				</div>
+				<div class="form-group ">
+					<label for="recommand_subject">제 목</label> <input type="text"
+						class="form-control" id="recommand_subject"
+						name="recommand_subject"
+						value="<%=article.getRecommand_subject()%>" required="required" />
+				</div>
+				<div class="form-group ">
+					<label for="recommand_content">내 용</label>
+					<textarea class="form-control is-invalid" id="validationTextarea"
+						name="recommand_content" placeholder="내용을 적어 주세요." cols="40"
+						rows="15" style="resize: none;" required><%=article.getRecommand_content()%></textarea>
+				</div>
+				<section id="commandCell">
+					<a class="btn btn-primary" href="javascript:modifyboard()"
+						role="button">수정</a>&nbsp;&nbsp; <a class="btn btn-primary"
+						href="javascript:history.go(-1)" role="button">뒤로</a>
+				</section>
+			</form>
+		</section>
+	</div>
 	<!-- 글 수정 끝 -->
 	<!-- 2020-12-02 haesu -->
 	<div class="controller">

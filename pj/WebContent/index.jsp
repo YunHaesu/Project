@@ -30,7 +30,9 @@ ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("today
 <link rel="stylesheet" href="css/style.css" />
 <title>컴퓨터 홈 쇼핑 사이트</title>
 </head>
-<body>
+<body oncontextmenu="return false" ondragstart="return false"
+	onselectstart="return false">
+
 	<!-- 2020-12-02 haesu -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
 		id="header">
@@ -73,8 +75,8 @@ ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("today
 					id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"> 조립PC </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="#">사장 추천 조립PC</a> <a
-							class="dropdown-item" href="#">유저 추천 조립PC</a> <a
+						<a class="dropdown-item" href="#">유저 추천 조립PC</a> <a
+							class="dropdown-item" href="#">사장 추천 조립PC</a> <a
 							class="dropdown-item" href="#">컴퓨터 부품 회사 추천 조립PC</a>
 					</div></li>
 				<li class="nav-item dropdown"><a
@@ -109,207 +111,208 @@ ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("today
 	<!-- end -->
 
 	<!-- help  haesu  2020-12-02 -->
-	<div class = "container">
-	<section class="container__size" id="home">
-		<div class=" w-100 ">
-			<div id="carouselExampleControls"
-				class="carousel slide w-100 container__center " data-ride="carousel">
-				<div class="carousel-inner w-100 ">
-					<div class="carousel-item active w-100">
-						<img src="img/come.png" class="d-block w-100" alt="..."
-							style="height: 400px">
+	<div class="container">
+		<section class="container__size" id="home">
+			<div class=" w-100 ">
+				<div id="carouselExampleControls"
+					class="carousel slide w-100 container__center "
+					data-ride="carousel">
+					<div class="carousel-inner w-100 ">
+						<div class="carousel-item active w-100">
+							<img src="img/come.png" class="d-block w-100" alt="..."
+								style="height: 400px">
+						</div>
+						<div class="carousel-item w-100">
+							<img src="img/norefund.png" class="d-block w-100" alt="..."
+								style="height: 400px">
+						</div>
+						<div class="carousel-item w-100">
+							<img src="img/attack.jpg" class="d-block w-100" alt="..."
+								style="height: 400px">
+						</div>
 					</div>
-					<div class="carousel-item w-100">
-						<img src="img/norefund.png" class="d-block w-100" alt="..."
-							style="height: 400px">
-					</div>
-					<div class="carousel-item w-100">
-						<img src="img/attack.jpg" class="d-block w-100" alt="..."
-							style="height: 400px">
-					</div>
+					<a class="carousel-control-prev" href="#carouselExampleControls"
+						role="button" data-slide="prev"> <span
+						class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+						class="sr-only">Previous</span>
+					</a> <a class="carousel-control-next" href="#carouselExampleControls"
+						role="button" data-slide="next"> <span
+						class="carousel-control-next-icon" aria-hidden="true"></span> <span
+						class="sr-only">Next</span>
+					</a>
 				</div>
-				<a class="carousel-control-prev" href="#carouselExampleControls"
-					role="button" data-slide="prev"> <span
-					class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-					class="sr-only">Previous</span>
-				</a> <a class="carousel-control-next" href="#carouselExampleControls"
-					role="button" data-slide="next"> <span
-					class="carousel-control-next-icon" aria-hidden="true"></span> <span
-					class="sr-only">Next</span>
-				</a>
 			</div>
-		</div>
-	</section>
-	<!-- help end -->
-	<!-- 강현우 상품 목록 2020/12/2 -->
-	<section id="portfolio">
-		<div class="text-center">
-			<h2>상품 목록</h2>
-		</div>
-		<div id="com">
-			<ul class="board-list">
-				<a data-toggle="modal" data-target="#Snote">
-					<li><img src="img/Snote.jpg" class="com__size">
-						<div class="com_show">
-							<h4>[삼성전자]노트북7 Force 15형</h4>
-							<p>가격 : 1,000,000원</p>
-						</div></li>
-				</a>
-				<a data-toggle="modal" data-target="#LGDesk">
-					<li><img src="img/LDcom.jpg" class="com__size">
-						<div class="com_show">
-							<h4>[LG전자] 슬림형 데스크탑 Z80GV</h4>
-							<p>가격 : 800,000원</p>
-						</div></li>
-				</a>
-				<a data-toggle="modal" data-target="#LEM70t">
-					<li><img src="img/LeDcom.png" class="com__size">
-						<div class="com_show">
-							<h4>[레노버] 씽크센터 M70t</h4>
-							<p>가격 : 900,000원</p>
-						</div></li>
-				</a>
-			</ul>
-		</div>
-		<div id="com">
-			<ul class="board-list">
-				<a data-toggle="modal" data-target="#BHP190ML">
-					<li><img src="img/PMo.jpg" class="com__size">
-						<div class="com_show">
-							<h4>[비트엠] 플래티넘 HP190ML 프리싱크 HDR</h4>
-							<p>가격 : 200,000원</p>
-						</div></li>
-				</a>
-				<a data-toggle="modal" data-target="#ADPC4-21300">
-					<li><img src="img/AD4.jpg" class="com__size">
-						<div class="com_show">
-							<h4>[ADATA] 4GB 컴퓨터 DDR4 PC4-21300</h4>
-							<p>가격 : 20,000원</p>
-						</div></li>
-				</a>
-				<a data-toggle="modal" data-target="#CG6">
-					<li><img src="img/SC.jpg" class="com__size">
-						<div class="com_show">
-							<h4>[Creative] 사운드 블라스터X G6 사운드카드</h4>
-							<p>가격 : 190,000원</p>
-						</div></li>
-				</a>
-			</ul>
-		</div>
-	</section>
-	<!-- end -->
-
-	<!-- 2020-12-02 haesu and gang -->
-	<div class="container pt-2">
-		<div class="card text-center m-3 ">
-			<div class="card-header">
-				<ul class="nav nav-tabs card-header-tabs">
-					<li class="nav-item"><a class="nav-link active" href="#">공지사항</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">이벤트/쿠폰</a></li>
+		</section>
+		<!-- help end -->
+		<!-- 강현우 상품 목록 2020/12/2 -->
+		<section id="portfolio">
+			<div class="text-center">
+				<h2>상품 목록</h2>
+			</div>
+			<div id="com">
+				<ul class="board-list">
+					<a data-toggle="modal" data-target="#Snote">
+						<li><img src="img/Snote.jpg" class="com__size">
+							<div class="com_show">
+								<h4>[삼성전자]노트북7 Force 15형</h4>
+								<p>가격 : 1,000,000원</p>
+							</div></li>
+					</a>
+					<a data-toggle="modal" data-target="#LGDesk">
+						<li><img src="img/LDcom.jpg" class="com__size">
+							<div class="com_show">
+								<h4>[LG전자] 슬림형 데스크탑 Z80GV</h4>
+								<p>가격 : 800,000원</p>
+							</div></li>
+					</a>
+					<a data-toggle="modal" data-target="#LEM70t">
+						<li><img src="img/LeDcom.png" class="com__size">
+							<div class="com_show">
+								<h4>[레노버] 씽크센터 M70t</h4>
+								<p>가격 : 900,000원</p>
+							</div></li>
+					</a>
 				</ul>
 			</div>
-			<div class="card-body tab-info">
-				<a href="boardWriteForm.do">게시판글쓰기</a>
+			<div id="com">
+				<ul class="board-list">
+					<a data-toggle="modal" data-target="#BHP190ML">
+						<li><img src="img/PMo.jpg" class="com__size">
+							<div class="com_show">
+								<h4>[비트엠] 플래티넘 HP190ML 프리싱크 HDR</h4>
+								<p>가격 : 200,000원</p>
+							</div></li>
+					</a>
+					<a data-toggle="modal" data-target="#ADPC4-21300">
+						<li><img src="img/AD4.jpg" class="com__size">
+							<div class="com_show">
+								<h4>[ADATA] 4GB 컴퓨터 DDR4 PC4-21300</h4>
+								<p>가격 : 20,000원</p>
+							</div></li>
+					</a>
+					<a data-toggle="modal" data-target="#CG6">
+						<li><img src="img/SC.jpg" class="com__size">
+							<div class="com_show">
+								<h4>[Creative] 사운드 블라스터X G6 사운드카드</h4>
+								<p>가격 : 190,000원</p>
+							</div></li>
+					</a>
+				</ul>
 			</div>
-			<div class="card-body d-none tab-info mx-auto">
-				<div class="card-deck card__deck-margin">
-					<div class="card bg-white text-white card__size">
-						<a href="#" class="text-decoration-none"> <img
-							src="img/coupon/RTX3060coupon.jpg"
-							class="card-img-top card-img__cover" alt="...">
-							<h4>회원 전용 쿠폰</h4>
-						</a>
-					</div>
-					<div class="card bg-white text-white card__size">
-						<a href="#" class="text-decoration-none"> <img
-							src="img/coupon/AAL300M.jpg" class="card-img-top card-img__cover"
-							alt="...">
-							<h4>회원 전용 쿠폰</h4>
-						</a>
-					</div>
-					<div class="card bg-white text-white card__size">
-						<a href="#" class="text-decoration-none"> <img
-							src="img/coupon/g102.jpg" class="card-img-top card-img__cover"
-							alt="...">
-							<h4>회원 전용 쿠폰</h4>
-						</a>
-					</div>
-				</div>
+		</section>
+		<!-- end -->
 
-				<div class="card-deck card__deck-margin">
-					<div class="card bg-white text-white card__size">
-						<a href="#" class="text-decoration-none"> <img
-							src="img/coupon/GM-750.jpg" class="card-img-top card-img__cover"
-							alt="...">
-							<h4>비회원 전용 쿠폰</h4>
-						</a>
+		<!-- 2020-12-02 haesu and gang -->
+		<div class="container pt-2">
+			<div class="card text-center m-3 ">
+				<div class="card-header">
+					<ul class="nav nav-tabs card-header-tabs">
+						<li class="nav-item"><a class="nav-link active" href="#">공지사항</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#">이벤트/쿠폰</a></li>
+					</ul>
+				</div>
+				<div class="card-body tab-info">
+					<a href="boardWriteForm.do">게시판글쓰기</a>
+				</div>
+				<div class="card-body d-none tab-info mx-auto">
+					<div class="card-deck card__deck-margin">
+						<div class="card bg-white text-white card__size">
+							<a href="#" class="text-decoration-none"> <img
+								src="img/coupon/RTX3060coupon.jpg"
+								class="card-img-top card-img__cover" alt="...">
+								<h4>회원 전용 쿠폰</h4>
+							</a>
+						</div>
+						<div class="card bg-white text-white card__size">
+							<a href="#" class="text-decoration-none"> <img
+								src="img/coupon/AAL300M.jpg"
+								class="card-img-top card-img__cover" alt="...">
+								<h4>회원 전용 쿠폰</h4>
+							</a>
+						</div>
+						<div class="card bg-white text-white card__size">
+							<a href="#" class="text-decoration-none"> <img
+								src="img/coupon/g102.jpg" class="card-img-top card-img__cover"
+								alt="...">
+								<h4>회원 전용 쿠폰</h4>
+							</a>
+						</div>
 					</div>
-					<div class="card bg-white text-white card__size">
-						<a href="#" class="text-decoration-none"> <img
-							src="img/coupon/odysseyg9.jpg"
-							class="card-img-top card-img__cover" alt="...">
-							<h4>비회원 전용 쿠폰</h4>
-						</a>
-					</div>
-					<div class="card bg-white text-white card__size">
-						<a href="#" class="text-decoration-none"> <img
-							src="img/coupon/RYZEN5600.jpg"
-							class="card-img-top card-img__cover" alt="...">
-							<h4>비회원 전용 쿠폰</h4>
-						</a>
+
+					<div class="card-deck card__deck-margin">
+						<div class="card bg-white text-white card__size">
+							<a href="#" class="text-decoration-none"> <img
+								src="img/coupon/GM-750.jpg" class="card-img-top card-img__cover"
+								alt="...">
+								<h4>비회원 전용 쿠폰</h4>
+							</a>
+						</div>
+						<div class="card bg-white text-white card__size">
+							<a href="#" class="text-decoration-none"> <img
+								src="img/coupon/odysseyg9.jpg"
+								class="card-img-top card-img__cover" alt="...">
+								<h4>비회원 전용 쿠폰</h4>
+							</a>
+						</div>
+						<div class="card bg-white text-white card__size">
+							<a href="#" class="text-decoration-none"> <img
+								src="img/coupon/RYZEN5600.jpg"
+								class="card-img-top card-img__cover" alt="...">
+								<h4>비회원 전용 쿠폰</h4>
+							</a>
+						</div>
 					</div>
 				</div>
+			</div>
+		</div>
+		<!-- end -->
+		<!-- 2020-12-02 haesu -->
+		<div class="controller">
+			<%
+				if (loginMember == null) {
+			%>
+			<div class="controller__menu">
+				<button type="button" class="btn btn-primary btn-sm btn-block"
+					data-toggle="modal" data-target="#loginModal">로그인</button>
+			</div>
+			<!-- 회원가입 modal만들기 -->
+			<div class="controller__menu">
+				<button type="button" class="btn btn-primary btn-sm btn-block"
+					data-toggle="modal" data-target="#joinModal">회원가입</button>
+			</div>
+
+			<%
+				} else {
+			%>
+			<div class="controller__menu">
+				<h6>
+					<%=loginMember.getId()%>님 환영합니다.
+				</h6>
+			</div>
+			<div class="controller__menu">
+				<button type="button" class="btn btn-primary btn-sm btn-block"
+					onclick="location.href='logout.do'">로그아웃</button>
+			</div>
+			<div class="controller__menu">
+				<button type="button" class="btn btn-primary btn-sm btn-block"
+					data-toggle="modal" data-target="#profileModal">프로필 수정</button>
+			</div>
+			<%
+				}
+			%>
+
+			<div class="controller__menu">
+				<a class="btn btn-primary btn-sm btn-block " href="goodsListCart.do">장바구니</a>
+			</div>
+			<div class="controller__menu ">
+				<span class="text-center">최근본상품</span>
+
+				<div></div>
+
 			</div>
 		</div>
 	</div>
-	<!-- end -->
-	<!-- 2020-12-02 haesu -->
-	<div class="controller">
-		<%
-			if (loginMember == null) {
-		%>
-		<div class="controller__menu">
-			<button type="button" class="btn btn-primary btn-sm btn-block"
-				data-toggle="modal" data-target="#loginModal">로그인</button>
-		</div>
-		<!-- 회원가입 modal만들기 -->
-		<div class="controller__menu">
-			<button type="button" class="btn btn-primary btn-sm btn-block"
-				data-toggle="modal" data-target="#joinModal">회원가입</button>
-		</div>
-
-		<%
-			} else {
-		%>
-		<div class="controller__menu">
-			<h6>
-				<%=loginMember.getId()%>님 환영합니다.
-			</h6>
-		</div>
-		<div class="controller__menu">
-			<button type="button" class="btn btn-primary btn-sm btn-block"
-				onclick="location.href='logout.do'">로그아웃</button>
-		</div>
-		<div class="controller__menu">
-			<button type="button" class="btn btn-primary btn-sm btn-block"
-				data-toggle="modal" data-target="#profileModal">프로필 수정</button>
-		</div>
-		<%
-			}
-		%>
-
-		<div class="controller__menu">
-			<a class="btn btn-primary btn-sm btn-block " href="goodsListCart.do">장바구니</a>
-		</div>
-		<div class="controller__menu ">
-			<span class="text-center">최근본상품</span>
-
-			<div></div>
-
-		</div>
-	</div>
-
 	<footer class="text-center text-white footer__color">
 		<div class="footer-above">
 			<div class="container pt-4">
@@ -343,7 +346,7 @@ ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("today
 			</div>
 		</div>
 	</footer>
-	</div>
+
 	<!-- end -->
 
 	<!-- Login Modal  2020-12-03 haesu-->

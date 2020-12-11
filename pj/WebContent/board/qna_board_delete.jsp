@@ -116,8 +116,8 @@ String nowPage = (String) request.getAttribute("page");
 	</nav>
 	<!-- end -->
 	<!-- 2020/12/8 글 삭제 시작 -->
-	<section id="passForm">
-		<div class="container pt-4">
+	<section id="passForm" class= "bbs__margin-top">
+		<div class="container pt-4 bbs__body">
 			<div class="text-center m-3 ">
 				<form name="deleteForm"
 					action="boardDeletePro.do?board_num=<%=board_num%>" method="post">

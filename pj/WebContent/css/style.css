@@ -10,12 +10,14 @@ font-family: 'Noto Sans KR', sans-serif;
 @import "com.css";
 @import "card.css";
 
-/*goodsList.css*/
+/* goodsList.css */
 
 @import "goods/goodsList.css";
 @import "goods/goodscard.css";
 @import "goods/modal.css";
 
+/* bbs.css */
+@import "bbs/boardList.css";
 
 h1, h2, h3, h4, .navbar-brand {
 	font-family: 'Do Hyeon', sans-serif;
@@ -36,7 +38,4 @@ body {
 
 input::-webkit-input-placeholder{
 	text-align: center;
-}
-.body__margin-top{
-	margin-top: 200px;
 }

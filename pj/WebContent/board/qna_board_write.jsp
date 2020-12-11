@@ -113,10 +113,10 @@ ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("today
 	</nav>
 	<!-- end -->
 	<!-- 2020/12/7 강현우 게시판 글 등록 시작 -->
-	<section id="writeForm">
-		<div class="container pt-4" style="width: 40%">
+	<section id="writeForm" class= "bbs__margin-top">
+		<div class="card container pt-4" style="width: 40%">
 			<div class="text-center m-3 ">
-				<h2>ezCom 글 등록</h2>
+				<h2>컴퓨터 리뷰 커뮤니티 글 등록</h2>
 				</div>
 				<form action="boardWritePro.do" method="post"
 					enctype="multipart/form-data" name="boardform">
@@ -139,7 +139,7 @@ ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("today
 						<div class="form-group">
 							<label for="board_content">내 용</label>
 							<textarea class="form-control is-invalid" id="validationTextarea"
-								name="board_content" placeholder="내용을 적어 주세요."
+								name="board_content" placeholder="내용을 적어 주세요." cols="30" rows="10"
 								style="resize: none;" required></textarea>
 						</div>
 						<div class="form-group">

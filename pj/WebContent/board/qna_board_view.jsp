@@ -119,9 +119,9 @@ String nowPage = (String) request.getAttribute("page");
 	</nav>
 	<!-- end -->
 	<!-- 2020/12/8 게시판 상세보기 -->
-	<section id="articleForm">
-		<div class="container pt-4">
-			<div class="card text-center m-3 ">
+	<div class="container pt-4 bbs__margin-top text-center" >
+		<section id="articleForm" >
+			<div class="card  m-3 ">
 				<h2>글 내용 상세보기</h2>
 				<section id="basicInfoArea">
 					제 목 :
@@ -139,18 +139,19 @@ String nowPage = (String) request.getAttribute("page");
 					<%=article.getBoard_content()%>
 				</section>
 			</div>
-		</div>
-	</section>
-	<section id="commandList">
-		<a class="btn btn-primary"
-			href="boardReplyForm.do?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>"
-			role="button">답변</a>&nbsp;&nbsp; <a class="btn btn-primary"
-			href="boardModifyForm.do?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>"
-			role="button">수정</a>&nbsp;&nbsp; <a class="btn btn-primary"
-			href="boardDeleteForm.do?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>"
-			role="button">삭제</a>&nbsp;&nbsp; <a class="btn btn-primary"
-			href="boardList.do?page=<%=nowPage%>" role="button">목록</a>&nbsp;&nbsp;
-	</section>
+
+		</section>
+		<section id="commandList">
+			<a class="btn btn-primary"
+				href="boardReplyForm.do?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>"
+				role="button">답변</a>&nbsp;&nbsp; <a class="btn btn-primary"
+				href="boardModifyForm.do?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>"
+				role="button">수정</a>&nbsp;&nbsp; <a class="btn btn-primary"
+				href="boardDeleteForm.do?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>"
+				role="button">삭제</a>&nbsp;&nbsp; <a class="btn btn-primary"
+				href="boardList.do?page=<%=nowPage%>" role="button">목록</a>&nbsp;&nbsp;
+		</section>
+	</div>
 	<!-- 상세보기 끝 -->
 	<!-- 2020-12-02 haesu -->
 	<div class="controller">

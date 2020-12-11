@@ -31,7 +31,8 @@ int cnt = 0;
 <link rel="stylesheet" href="css/style.css" />
 <title>컴퓨터 홈 쇼핑 사이트</title>
 </head>
-<body>
+<body oncontextmenu="return false" ondragstart="return false"
+	onselectstart="return false">
 	<!-- 2020-12-07 haesu -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
 		id="header">
@@ -76,8 +77,8 @@ int cnt = 0;
 					id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"> 조립PC </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="#">사장 추천 조립PC</a> <a
-							class="dropdown-item" href="#">유저 추천 조립PC</a> <a
+						<a class="dropdown-item" href="#">유저 추천 조립PC</a> <a
+							class="dropdown-item" href="#">사장 추천 조립PC</a> <a
 							class="dropdown-item" href="#">컴퓨터 부품 회사 추천 조립PC</a>
 					</div></li>
 				<li class="nav-item dropdown"><a
@@ -109,38 +110,39 @@ int cnt = 0;
 			<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
 		</form>
 	</nav>
-	<div class = "container">
-	<section class="container__size" id="home">
-		<div class=" w-100 ">
-			<div id="carouselExampleControls"
-				class="carousel slide w-100 container__center " data-ride="carousel">
-				<div class="carousel-inner w-100 ">
-					<div class="carousel-item active w-100">
-						<img src="img/come.png" class="d-block w-100" alt="..."
-							style="height: 400px">
+	<div class="container">
+		<section class="container__size" id="home">
+			<div class=" w-100 ">
+				<div id="carouselExampleControls"
+					class="carousel slide w-100 container__center "
+					data-ride="carousel">
+					<div class="carousel-inner w-100 ">
+						<div class="carousel-item active w-100">
+							<img src="img/come.png" class="d-block w-100" alt="..."
+								style="height: 400px">
+						</div>
+						<div class="carousel-item w-100">
+							<img src="img/norefund.png" class="d-block w-100" alt="..."
+								style="height: 400px">
+						</div>
+						<div class="carousel-item w-100">
+							<img src="img/attack.jpg" class="d-block w-100" alt="..."
+								style="height: 400px">
+						</div>
 					</div>
-					<div class="carousel-item w-100">
-						<img src="img/norefund.png" class="d-block w-100" alt="..."
-							style="height: 400px">
-					</div>
-					<div class="carousel-item w-100">
-						<img src="img/attack.jpg" class="d-block w-100" alt="..."
-							style="height: 400px">
-					</div>
+					<a class="carousel-control-prev" href="#carouselExampleControls"
+						role="button" data-slide="prev"> <span
+						class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+						class="sr-only">Previous</span>
+					</a> <a class="carousel-control-next" href="#carouselExampleControls"
+						role="button" data-slide="next"> <span
+						class="carousel-control-next-icon" aria-hidden="true"></span> <span
+						class="sr-only">Next</span>
+					</a>
 				</div>
-				<a class="carousel-control-prev" href="#carouselExampleControls"
-					role="button" data-slide="prev"> <span
-					class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-					class="sr-only">Previous</span>
-				</a> <a class="carousel-control-next" href="#carouselExampleControls"
-					role="button" data-slide="next"> <span
-					class="carousel-control-next-icon" aria-hidden="true"></span> <span
-					class="sr-only">Next</span>
-				</a>
 			</div>
-		</div>
-	</section>
-	
+		</section>
+
 		<div class="startLine text-center">
 			<p class="startLine__text"><%=pcList.get(1).getKind()%></p>
 		</div>
@@ -181,54 +183,54 @@ int cnt = 0;
 
 		<%
 			break;
-			}
+		}
 		}
 		%>
-	
 
-	<div class="controller">
-		<%
-			if (loginMember == null) {
-		%>
-		<div class="controller__menu">
-			<button type="button" class="btn btn-primary btn-sm btn-block"
-				data-toggle="modal" data-target="#loginModal">로그인</button>
-		</div>
-		<!-- 회원가입 modal만들기 -->
-		<div class="controller__menu">
-			<button type="button" class="btn btn-primary btn-sm btn-block"
-				data-toggle="modal" data-target="#joinModal">회원가입</button>
-		</div>
 
-		<%
-			} else {
-		%>
-		<div class="controller__menu">
-			<h6>
-				<%=loginMember.getId()%>님 환영합니다.
-			</h6>
-		</div>
-		<div class="controller__menu">
-			<button type="button" class="btn btn-primary btn-sm btn-block"
-				onclick="location.href='logout.do'">로그아웃</button>
-		</div>
-		<div class="controller__menu">
-			<button type="button" class="btn btn-primary btn-sm btn-block"
-				data-toggle="modal" data-target="#profileModal">프로필</button>
-		</div>
-		<%
-			}
-		%>
+		<div class="controller">
+			<%
+				if (loginMember == null) {
+			%>
+			<div class="controller__menu">
+				<button type="button" class="btn btn-primary btn-sm btn-block"
+					data-toggle="modal" data-target="#loginModal">로그인</button>
+			</div>
+			<!-- 회원가입 modal만들기 -->
+			<div class="controller__menu">
+				<button type="button" class="btn btn-primary btn-sm btn-block"
+					data-toggle="modal" data-target="#joinModal">회원가입</button>
+			</div>
 
-		<div class="controller__menu">
-			<a class="btn btn-primary btn-sm btn-block " href="goodsListCart.do">장바구니</a>
-		</div>
-		<div class="controller__menu ">
-			<span class="text-center">최근본상품</span>
-			<div></div>
+			<%
+				} else {
+			%>
+			<div class="controller__menu">
+				<h6>
+					<%=loginMember.getId()%>님 환영합니다.
+				</h6>
+			</div>
+			<div class="controller__menu">
+				<button type="button" class="btn btn-primary btn-sm btn-block"
+					onclick="location.href='logout.do'">로그아웃</button>
+			</div>
+			<div class="controller__menu">
+				<button type="button" class="btn btn-primary btn-sm btn-block"
+					data-toggle="modal" data-target="#profileModal">프로필</button>
+			</div>
+			<%
+				}
+			%>
+
+			<div class="controller__menu">
+				<a class="btn btn-primary btn-sm btn-block " href="goodsListCart.do">장바구니</a>
+			</div>
+			<div class="controller__menu ">
+				<span class="text-center">최근본상품</span>
+				<div></div>
+			</div>
 		</div>
 	</div>
-
 	<footer class="text-center footer__color text-white">
 		<div class="footer-above">
 			<div class="container pt-4">
@@ -262,7 +264,7 @@ int cnt = 0;
 			</div>
 		</div>
 	</footer>
-	</div>
+
 
 	<div class="modal fade" id="loginModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -19,6 +19,7 @@ import action.BoardModifyProAction;
 import action.BoardReplyFormAction;
 import action.BoardReplyProAction;
 import action.BoardWriteProAction;
+import action.ComuListAction;
 import action.GoodsListAction;
 import action.JoinAction;
 import action.LoginAction;
@@ -36,198 +37,206 @@ import vo.ActionForward;
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doProc(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doProc(request, response);
 	}
 
-	protected void doProc(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doProc(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length());
 		ActionForward forward = null;
 		Action action = null;
-		
-		if(command.equals("/index.do")) {
+
+		if (command.equals("/index.do")) {
 			forward = new ActionForward();
 			forward.setPath("/index.jsp");
-		} else if(command.equals("/loginPro.do")){
+		} else if (command.equals("/loginPro.do")) {
 			action = new LoginAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/joinPro.do")){
+		} else if (command.equals("/joinPro.do")) {
 			action = new JoinAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/goodsList.do")){
+		} else if (command.equals("/goodsList.do")) {
 			action = new GoodsListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-		} else if(command.equals("/pcList.do")){
+
+		} else if (command.equals("/pcList.do")) {
 			action = new PcListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/boardWritePro.do")){
+		} else if (command.equals("/boardWritePro.do")) {
 			action = new BoardWriteProAction();
 			try {
-			forward = action.execute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/boardList.do")){
+		} else if (command.equals("/boardList.do")) {
 			action = new BoardListAction();
 			try {
-			forward = action.execute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/boardDetail.do")){
+		} else if (command.equals("/boardDetail.do")) {
 			action = new BoardDetailAction();
 			try {
-			forward = action.execute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/boardReplyForm.do")){
+		} else if (command.equals("/boardReplyForm.do")) {
 			action = new BoardReplyFormAction();
 			try {
-			forward = action.execute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/boardReplyPro.do")){
+		} else if (command.equals("/boardReplyPro.do")) {
 			action = new BoardReplyProAction();
 			try {
-			forward = action.execute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/boardModifyForm.do")){
+		} else if (command.equals("/boardModifyForm.do")) {
 			action = new BoardModifyFormAction();
 			try {
-			forward = action.execute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/boardModifyPro.do")){
+		} else if (command.equals("/boardModifyPro.do")) {
 			action = new BoardModifyProAction();
 			try {
-			forward = action.execute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/boardWriteForm.do")){
+		} else if (command.equals("/boardWriteForm.do")) {
 			forward = new ActionForward();
 			forward.setPath("/board/qna_board_write.jsp");
-		} else if(command.equals("/boardDeleteForm.do")){
+		} else if (command.equals("/boardDeleteForm.do")) {
 			String nowPage = request.getParameter("page");
 			request.setAttribute("page", nowPage);
 			int board_num = Integer.parseInt(request.getParameter("board_num"));
 			request.setAttribute("board_num", board_num);
 			forward = new ActionForward();
 			forward.setPath("/board/qna_board_delete.jsp");
-		} else if(command.equals("/boardDeletePro.do")){
+		} else if (command.equals("/boardDeletePro.do")) {
 			action = new BoardDeleteProAction();
 			try {
-			forward = action.execute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/recommandWritePro.do")){
-				action = new RecommandWriteProAction();
-				try {
+		} else if (command.equals("/recommandWritePro.do")) {
+			action = new RecommandWriteProAction();
+			try {
 				forward = action.execute(request, response);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			} else if(command.equals("/recommandList.do")){
-				action = new RecommandListAction();
-				try {
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/recommandList.do")) {
+			action = new RecommandListAction();
+			try {
 				forward = action.execute(request, response);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			} else if(command.equals("/recommandDetail.do")){
-				action = new RecommandDetailAction();
-				try {
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/recommandDetail.do")) {
+			action = new RecommandDetailAction();
+			try {
 				forward = action.execute(request, response);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			} else if(command.equals("/recommandReplyForm.do")){
-				action = new RecommandReplyFormAction();
-				try {
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/recommandReplyForm.do")) {
+			action = new RecommandReplyFormAction();
+			try {
 				forward = action.execute(request, response);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			} else if(command.equals("/recommandReplyPro.do")){
-				action = new RecommandReplyProAction();
-				try {
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/recommandReplyPro.do")) {
+			action = new RecommandReplyProAction();
+			try {
 				forward = action.execute(request, response);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			} else if(command.equals("/recommandModifyForm.do")){
-				action = new RecommandModifyFormAction();
-				try {
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/recommandModifyForm.do")) {
+			action = new RecommandModifyFormAction();
+			try {
 				forward = action.execute(request, response);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			} else if(command.equals("/recommandModifyPro.do")){
-				action = new RecommandModifyProAction();
-				try {
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/recommandModifyPro.do")) {
+			action = new RecommandModifyProAction();
+			try {
 				forward = action.execute(request, response);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			} else if(command.equals("/recommandWriteForm.do")){
-				forward = new ActionForward();
-				forward.setPath("/recommand/qna_recommand_write.jsp");
-			} else if(command.equals("/recommandDeleteForm.do")){
-				String nowPage = request.getParameter("page");
-				request.setAttribute("page", nowPage);
-				int recommand_num = Integer.parseInt(request.getParameter("recommand_num"));
-				request.setAttribute("recommand_num", recommand_num);
-				forward = new ActionForward();
-				forward.setPath("/recommand/qna_recommand_delete.jsp");
-			} else if(command.equals("/recommandDeletePro.do")){
-				action = new RecommandDeleteProAction();
-				try {
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/recommandWriteForm.do")) {
+			forward = new ActionForward();
+			forward.setPath("/recommand/qna_recommand_write.jsp");
+		} else if (command.equals("/recommandDeleteForm.do")) {
+			String nowPage = request.getParameter("page");
+			request.setAttribute("page", nowPage);
+			int recommand_num = Integer.parseInt(request.getParameter("recommand_num"));
+			request.setAttribute("recommand_num", recommand_num);
+			forward = new ActionForward();
+			forward.setPath("/recommand/qna_recommand_delete.jsp");
+		} else if (command.equals("/recommandDeletePro.do")) {
+			action = new RecommandDeleteProAction();
+			try {
 				forward = action.execute(request, response);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			
-			
-		
-		} else if(command.equals("/logout.do")){
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/comuList.do")) {
+			action = new ComuListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} else if (command.equals("/logout.do")) {
 			HttpSession session = request.getSession();
 			session.invalidate();
 			response.sendRedirect("index.do");
-		} 
-		
-		if(forward != null) {
-			if(forward.isRedirect()) {
+		}
+
+		if (forward != null) {
+			if (forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
 			} else {
 				RequestDispatcher rd = request.getRequestDispatcher(forward.getPath());

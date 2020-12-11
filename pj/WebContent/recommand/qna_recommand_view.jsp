@@ -120,7 +120,7 @@ String nowPage = (String) request.getAttribute("page");
 	</nav>
 	<!-- end -->
 	<!-- 2020/12/8 게시판 상세보기 -->
-	<div class="container pt-4 body__margin-top">
+	<div class="container pt-4 bbs__margin-top">
 		<div class="text-center m-3 ">
 			<section id="articleForm">
 				<h2>글 내용 상세보기</h2>
