@@ -390,9 +390,8 @@
 					<div>
 						<img class="modal-image__size" alt="-"
 							src="<%=comuList.get(i).getModalimage()%>">
-					</div>
+					</div>  
 				</div>
-
 			</div>
 		</div>  
 	</div> 
