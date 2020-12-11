@@ -145,11 +145,11 @@
 		</section>
 		
 		<div class="startLine text-center">
-			<p class="startLine__text"><%=goodsList.get(1).getKind()%></p>
+			<p class="startLine__text"><%=comuList.get(1).getKind()%></p>
 		</div>
 		<br>
 		<%
-			for (int i = 0; i < goodsList.size(); i++) {
+			for (int i = 0; i < comuList.size(); i++) {
 			if (i % 3 == 0) {
 		%>
 		<div class="card-deck">
@@ -159,14 +159,14 @@
 
 			<div class="card goods__card-size">
 				<a data-toggle="modal"
-					data-target="#<%=goodsList.get(i).getModalip()%>"> <img
-					src="./img/<%=goodsList.get(i).getImage()%>"
+					data-target="#<%=comuList.get(i).getModalip()%>"> <img
+					src="./img/<%=comuList.get(i).getImage()%>"
 					class="card-img-top card-img__size" alt="...">
 					<div class="card-body">
 						<p class="card-text">
 							상품명:
-							<%=goodsList.get(i).getName()%><br /> 가격:
-							<%=goodsList.get(i).getPrice()%><br />
+							<%=comuList.get(i).getName()%><br /> 가격:
+							<%=comuList.get(i).getPrice()%><br />
 						</p>
 					</div>
 				</a>
@@ -373,9 +373,9 @@
 	</div>
 	<!-- end -->
 	<%
-		for (int i = 0; i < goodsList.size(); i++) {
+		for (int i = 0; i < comuList.size(); i++) {
 	%>
-	<div class="modal fade" id="<%=goodsList.get(i).getModalip()%>"
+	<div class="modal fade" id="<%=comuList.get(i).getModalip()%>"
 		tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog__size">
 			<div class="modal-content">
@@ -389,7 +389,7 @@
 				<div class="modal-body">
 					<div>
 						<img class="modal-image__size" alt="-"
-							src="<%=goodsList.get(i).getModalimage()%>">
+							src="<%=comuList.get(i).getModalimage()%>">
 					</div>
 				</div>
 
