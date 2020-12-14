@@ -75,9 +75,10 @@ ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("today
 					id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"> 조립PC </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="#">유저 추천 조립PC</a> <a
-							class="dropdown-item" href="#">사장 추천 조립PC</a> <a
-							class="dropdown-item" href="#">컴퓨터 부품 회사 추천 조립PC</a>
+						<a class="dropdown-item" href="comuList.do?kind=user">유저 추천
+							조립PC</a> <a class="dropdown-item" href="comuList.do?kind=owner">사장
+							추천 조립PC</a> <a class="dropdown-item" href="comuList.do?kind=CEO">컴퓨터
+							부품 회사 추천 조립PC</a>
 					</div></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
@@ -303,7 +304,7 @@ ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("today
 			%>
 
 			<div class="controller__menu">
-				<a class="btn btn-primary btn-sm btn-block " href="goodsListCart.do">장바구니</a>
+				<a class="btn btn-primary btn-sm btn-block " href="goodsCartList.do">장바구니</a>
 			</div>
 			<div class="controller__menu ">
 				<span class="text-center">최근본상품</span>

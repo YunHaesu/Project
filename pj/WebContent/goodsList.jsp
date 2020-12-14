@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.HashMap,java.util.ArrayList"%>
-<%@ page import="vo.Member, vo.Goods"%>
+<%@ page import="vo.Member, vo.Goods, vo.Cart"%>
+
+
 <%
 	Member loginMember = (Member) session.getAttribute("loginMember");
-ArrayList<Goods> goodsList = (ArrayList<Goods>) request.getAttribute("goodsList");
+	ArrayList<Goods> goodsList = (ArrayList<Goods>) request.getAttribute("goodsList");
 
 int cnt = 0;
 %>
@@ -77,9 +79,9 @@ int cnt = 0;
 					id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"> 조립PC </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="#">유저 추천 조립PC</a> <a
-							class="dropdown-item" href="#">사장 추천 조립PC</a> <a
-							class="dropdown-item" href="#">컴퓨터 부품 회사 추천 조립PC</a>
+						<a class="dropdown-item" href="comuList.do?kind=user">유저 추천 조립PC</a> <a
+							class="dropdown-item" href="comuList.do?kind=owner">사장 추천 조립PC</a> <a
+							class="dropdown-item" href="comuList.do?kind=CEO">컴퓨터 부품 회사 추천 조립PC</a>
 					</div></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
@@ -221,7 +223,7 @@ int cnt = 0;
 			%>
 
 			<div class="controller__menu">
-				<a class="btn btn-primary btn-sm btn-block " href="goodsListCart.do">장바구니</a>
+				<a class="btn btn-primary btn-sm btn-block " href="goodsCartList.do">장바구니</a>
 			</div>
 			<div class="controller__menu ">
 				<span class="text-center">최근본상품</span>
@@ -392,6 +394,9 @@ int cnt = 0;
 				</div>
 
 			</div>
+		</div>
+		<div>
+			<a class="btn btn-primary button__lo" href = "goodsCartAdd.do?id=<%= goodsList.get(i).getId()%>">장바구니에 담기</a>
 		</div>
 	</div>
 	<%

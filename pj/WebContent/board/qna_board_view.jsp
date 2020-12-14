@@ -10,8 +10,6 @@
 <%
 	Member loginMember = (Member) session.getAttribute("loginMember");
 ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("todayImageList");
-%>
-<%
 	BoardBean article = (BoardBean) request.getAttribute("article");
 String nowPage = (String) request.getAttribute("page");
 %>

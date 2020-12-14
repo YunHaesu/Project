@@ -19,12 +19,7 @@ public class GoodsDAO {
 
 	}
 
-	public static GoodsDAO getInstance() {
-		if (boardDAO == null) {
-			boardDAO = new GoodsDAO();
-		}
-		return boardDAO;
-	}
+	
 
 	public void setConnection(Connection conn) {
 		this.conn = conn;
@@ -183,5 +178,14 @@ public class GoodsDAO {
 			close(pstmt);
 		}
 		return comuList;
+	}
+
+
+
+	public static GoodsDAO getInstance() {
+			if (boardDAO == null) {
+				boardDAO = new GoodsDAO();
+			}
+			return boardDAO;
 	}
 }
