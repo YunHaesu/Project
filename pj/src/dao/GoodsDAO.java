@@ -121,6 +121,54 @@ public class GoodsDAO {
 		return goods;
 	}
 	
+	public Goods selectPc(int id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Goods goods = null;
+
+		try {
+			pstmt = conn.prepareStatement("select * from pc where id =?");
+			pstmt.setInt(1, id);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				goods = new Goods(rs.getInt("id"), rs.getString("kind"), rs.getString("name"), rs.getInt("price"),
+						rs.getString("image"), rs.getString("modalip"),rs.getString("modalimage"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return goods;
+	}
+	
+	public Goods selectComu(int id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Goods goods = null;
+
+		try {
+			pstmt = conn.prepareStatement("select * from comu where id =?");
+			pstmt.setInt(1, id);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				goods = new Goods(rs.getInt("id"), rs.getString("kind"), rs.getString("name"), rs.getInt("price"),
+						rs.getString("image"), rs.getString("modalip"),rs.getString("modalimage"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return goods;
+	}
+	
 	public static ArrayList<Goods> selectpcList(String kind) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

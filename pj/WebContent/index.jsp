@@ -5,7 +5,7 @@
 <%@ page import="java.util.HashMap,java.util.ArrayList"%>
 <%
 	Member loginMember = (Member) session.getAttribute("loginMember");
-ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("todayImageList");
+	ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("todayImageList");
 %>
 <!DOCTYPE html>
 <html>
@@ -357,7 +357,7 @@ ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("today
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">회원가입</h5>
+					<h5 class="modal-title" id="exampleModalLabel">로그인</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -401,9 +401,12 @@ ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("today
 				<div class="modal-body">
 					<form action="joinPro.do" method="post">
 						<div class="form-group">
-							<input type="text" class="form-control" name="id"
+							<input type="text" class="form-control" name="id" id="joinId"
 								placeholder="아이디" maxlength="20" required="required"
 								autocomplete="off" />
+						</div>
+						<div class="form-group" id = "LoginCheck">
+							<span class="form-control">중복 확인을 해주세요</span>
 						</div>
 						<div class="form-group">
 							<input type="password" class="form-control" name="passwd"
@@ -447,7 +450,7 @@ ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("today
 								placeholder="이메일" maxlength="20" required="required"
 								autocomplete="no" />
 						</div>
-						<button type="submit" class="btn btn-primary form-control">가입</button>
+						<button type="submit" class="btn btn-primary form-control" id = "joinbutton">가입</button>
 					</form>
 				</div>
 			</div>
