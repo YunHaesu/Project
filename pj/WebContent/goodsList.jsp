@@ -18,7 +18,7 @@ int cnt = 0;
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <!-- title image -->
-
+<link href = "img/EzIcon.jpg" rel="icon" type = "image/x-icon">
 <!-- reset -->
 <link rel="stylesheet"
 	href="https://meyerweb.com/eric/tools/css/reset/reset.css">
@@ -36,7 +36,7 @@ int cnt = 0;
 <body oncontextmenu="return false" ondragstart="return false"
 	onselectstart="return false">
 	<!-- 2020-12-07 haesu -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
+	<nav class="navbar navbar-expand-lg navbar__color bg-dark fixed-top"
 		id="header">
 
 		<button class="navbar-toggler navbar-toggler__nohide" type="button"
@@ -144,6 +144,7 @@ int cnt = 0;
 				</div>
 			</div>
 		</section>
+		
 		<div class="startLine text-center">
 			<p class="startLine__text"><%=goodsList.get(1).getKind()%></p>
 		</div>

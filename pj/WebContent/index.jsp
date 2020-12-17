@@ -5,7 +5,7 @@
 <%@ page import="java.util.HashMap,java.util.ArrayList"%>
 <%
 	Member loginMember = (Member) session.getAttribute("loginMember");
-	ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("todayImageList");
+ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("todayImageList");
 %>
 <!DOCTYPE html>
 <html>
@@ -15,7 +15,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <!-- title image -->
-
+<link href = "img/EzIcon.jpg" rel="icon" type = "image/x-icon">
 <!-- reset -->
 <link rel="stylesheet"
 	href="https://meyerweb.com/eric/tools/css/reset/reset.css">
@@ -34,7 +34,7 @@
 	onselectstart="return false">
 
 	<!-- 2020-12-02 haesu -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
+	<nav class="navbar navbar-expand-lg navbar__color bg-dark fixed-top"
 		id="header">
 		<button class="navbar-toggler navbar-toggler__nohide" type="button"
 			data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -148,7 +148,7 @@
 		<!-- 강현우 상품 목록 2020/12/2 -->
 		<section id="portfolio">
 			<div class="text-center">
-				<h2>상품 목록</h2>
+				<h1>상품 목록</h1>
 			</div>
 			<div id="com">
 				<ul class="board-list">
@@ -318,13 +318,13 @@
 		<div class="footer-above">
 			<div class="container pt-4">
 				<div class="row">
-					<div class="footer-col col-md-4">
+					<div class="footer-col col">
 						<h3 style="color: white;">위치</h3>
 						<p>
 							영남기술교육원<br />대구광역시 달서구
 						</p>
 					</div>
-					<div class="footer-col col-md-4">
+					<div class="footer-col col">
 						<h3 style="color: white;">소셜 미디어</h3>
 						<a href="#" class="btn btn-light m-2"><img
 							src="img/facebook.svg"></a> <a href="#"
@@ -334,7 +334,7 @@
 							src="img/twitch.svg"></a> <a href="#" class="btn btn-light m-2"><img
 							src="img/instagram.svg"></a>
 					</div>
-					<div class="footer-col col-md-4">
+					<div class="footer-col col">
 						<h3 style="color: white;">개발자 한마디</h3>
 						<p>언제든지 연락주세요!!</p>
 					</div>
@@ -405,13 +405,23 @@
 								placeholder="아이디" maxlength="20" required="required"
 								autocomplete="off" />
 						</div>
-						<div class="form-group" id = "LoginCheck">
+						<div class="form-group" id="LoginCheck">
 							<span class="form-control">중복 확인을 해주세요</span>
 						</div>
 						<div class="form-group">
 							<input type="password" class="form-control" name="passwd"
-								placeholder="비밀번호" maxlength="20" required="required"
+								id="pass" placeholder="비밀번호" maxlength="20" required="required"
 								autocomplete="off" />
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" name="passwd"
+								id="password" placeholder="비밀번호 확인" maxlength="20"
+								required="required" autocomplete="off" />
+						</div>
+						<div class="form-group">
+							<div class="form-control" id="alert-success" style="color: white; background: #738ED1;">비밀번호가 일치합니다.</div>
+							<div class="form-control" id="alert-danger" style="color: white; background: #FC707D;">비밀번호가 일치하지
+								않습니다.</div>
 						</div>
 						<div class="form-group">
 							<input type="text" class="form-control" name="name"
@@ -450,7 +460,8 @@
 								placeholder="이메일" maxlength="20" required="required"
 								autocomplete="no" />
 						</div>
-						<button type="submit" class="btn btn-primary form-control" id = "joinbutton">가입</button>
+						<button type="submit" class="btn btn-primary form-control"
+							id="joinbutton">가입</button>
 					</form>
 				</div>
 			</div>

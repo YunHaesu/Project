@@ -38,7 +38,7 @@ ArrayList<Goods> todayImageList = (ArrayList<Goods>) request.getAttribute("today
 </head>
 <body>
 	<!-- 2020-12-02 haesu -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
+	<nav class="navbar navbar-expand-lg navbar__color bg-dark fixed-top"
 		id="header">
 		<button class="navbar-toggler navbar-toggler__nohide" type="button"
 			data-toggle="collapse" data-target="#navbarNavDropdown"
