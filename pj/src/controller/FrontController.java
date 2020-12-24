@@ -27,8 +27,14 @@ import action.GoodsCartQtyUpAction;
 import action.GoodsCartRemoveAction;
 import action.GoodsCartSearchAction;
 import action.GoodsListAction;
+import action.IndexAction;
 import action.JoinAction;
 import action.LoginAction;
+import action.NoticeDeleteProAction;
+import action.NoticeDetailAction;
+import action.NoticeListAction;
+import action.NoticeModifyProAction;
+import action.NoticeWriteProAction;
 import action.PcListAction;
 import action.RecommandDeleteProAction;
 import action.RecommandDetailAction;
@@ -64,8 +70,12 @@ public class FrontController extends HttpServlet {
 		Action action = null;
 
 		if (command.equals("/index.do")) {
-			forward = new ActionForward();
-			forward.setPath("/index.jsp");
+			action = new IndexAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} else if (command.equals("/loginPro.do")) {
 			action = new LoginAction();
 			try {
@@ -278,7 +288,51 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		
+		} else if (command.equals("/noticeWritePro.do")) {
+			action = new NoticeWriteProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/noticeList.do")) {
+			action = new NoticeListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/noticeDetail.do")) {
+			action = new NoticeDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}  else if (command.equals("/noticeModifyPro.do")) {
+			action = new NoticeModifyProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/noticeWriteForm.do")) {
+			forward = new ActionForward();
+			forward.setPath("/notice/qna_notice_write.jsp");
+		} else if (command.equals("/noticeDeleteForm.do")) {
+			String nowPage = request.getParameter("page");
+			request.setAttribute("page", nowPage);
+			int notice_num = Integer.parseInt(request.getParameter("notice_num"));
+			request.setAttribute("notice_num", notice_num);
+			forward = new ActionForward();
+			forward.setPath("/notice/qna_notice_delete.jsp");
+		} else if (command.equals("/noticeDeletePro.do")) {
+			action = new NoticeDeleteProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 
 		} else if (command.equals("/logout.do")) {
 			HttpSession session = request.getSession();

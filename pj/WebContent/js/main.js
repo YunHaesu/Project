@@ -34,22 +34,48 @@ $(function() {
 	});
 	/* 비밀번호 중복확인 */
 	$(function() {
-		$("#alert-success").hide(); 
-		$("#alert-danger").hide(); 
-		$("input").keyup(function() { 
-			var pwd1 = $("#pass").val(); 
-			var pwd2 = $("#password").val(); 
+		$("#alert-success").hide();
+		$("#alert-danger").hide();
+		$("input").keyup(function() {
+			var pwd1 = $("#pass").val();
+			var pwd2 = $("#password").val();
 			if (pwd1 != "" || pwd2 != "") {
-				 if (pwd1 == pwd2) { 
-					$("#alert-success").show(); 
-					$("#alert-danger").hide(); 
+				if (pwd1 == pwd2) {
+					$("#alert-success").show();
+					$("#alert-danger").hide();
 					$("#joinbutton").removeAttr("disabled");
-					 } else { 
-						$("#alert-success").hide(); 
-						$("#alert-danger").show(); 
-						$("#joinbutton").attr("disabled", "disabled"); } } });
+				} else {
+					$("#alert-success").hide();
+					$("#alert-danger").show();
+					$("#joinbutton").attr("disabled", "disabled");
+				}
+			}
+		});
 
 	});
 
-
+	/*
+		2020/12/15 공지사항 글쓰기, 수정 모달 시작
+	 */
+	$(".noticeViewLink").each(function() {
+		$(this).click(function() {
+			console.log($(this).attr("data-num"));
+			$("#notice_num").val($(this).attr("data-num"));
+			$("#notice_num2").val($(this).attr("data-num"));
+			$(this).parent().next().next().next().text(Number($(this).parent().next().next().next().text()) + 1);
+			$.get("ajaxNotice.jsp", { "selectArticle": $(this).attr("data-num") }, function(data) {
+				var view = $.parseJSON(data);
+				console.log(view);
+				$("#noticeName").text(view[0]);
+				$("#noticeSubject").text(view[1]);
+				$("#noticeContent").text(view[2]);
+				$("#notice_subject2").val(view[1]);
+				$("#notice_content2").val(view[2]);
+			});
+			var del = $.parseJSON(data);
+			console.log(del);
+			$("#notice_pass2").val(del[0]);
+		});
+	});
 });
+	/* 모달 끝 */
